@@ -1,0 +1,20 @@
+
+ADMIN:::::::::::::::::::::
+
+VIEW REPORTS OF ALL STUDENTS:
+
+select s.student_name, s.student_id, ur.score from table_student s, table_test t, table_user_result ur where 
+s.STUDENT_ID=t.STUDENT_ID and t.TEST_ID=ur.TEST_ID;
+
+Search STUDENTS
+
+select s.Student_name from TABLE_STUDENT s where s.STUDENT_ID in( select stud.student_id from Table_STUDENT stud, TABLE_TEST t, TABLE_SUBJECT sub, TABLE_USER_RESULT ur, TABLE_CURR_TEST ct where
+sub.SUBJECT_NAME='JAVA' and stud.STUDENT_CITY='THANE' and stud.STUDENT_STATE='MAHARASHTRA' and ur.QUESTION_LEVEL=1 and 
+ur.SCORE=1) ;
+
+STUDENT::::::::::::::::::::::
+
+SEE my results:
+
+select subj.Subject_name , ur.QUESTION_LEVEL, ur.score from TABLE_SUBJECT subj, TABLE_USER_RESULT ur, TABLE_TEST t where
+t.STUDENT_ID=1 and t.SUBJECT_ID=subj.SUBJECT_ID and t.TEST_ID=ur.TEST_ID;
