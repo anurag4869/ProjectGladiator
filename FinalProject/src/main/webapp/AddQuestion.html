@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Add Questions</title>
+<link rel="stylesheet" href="AddQuestion.css">
+</head>
+<body>
+
+<form>
+
+  <div class="container">
+    <h3>Add Question</h3>
+	
+   
+    <hr>
+    <label for="question"><b>Question:</b></label>
+	<input type="text" placeholder="Enter Question" name="question" required></br>
+    
+	
+	<label for="choice1"><b>Choice 1:</b></label>
+    <input type="text" placeholder="Enter Choice 1" name="choice1" required></br>
+
+    <label for="choice2"><b>choice 2:</b></label>
+    <input type="text" placeholder="Enter Choice 2" name="choice2" pattern="[0-9]{10}" maxlength="10" ></br>
+	
+	<label for="choice3"><b>choice 3:</b></label>
+    <input type="text" placeholder="Enter Choice 3" name="choice3" required></br>
+
+    <label for="choice4"><b>Choice 4:</b></label>
+    <input type="text" placeholder="Enter Choice 4" name="choice4" required>
+	
+	<label for="state"><b>Level:</b></label>
+	
+	<input type="text" name="Level" list="level">
+    <datalist id="level">
+      <option value="Level 1">
+      <option value="Level 2">
+	  <option value="Level 3">
+	  </datalist>
+	 
+	 <label for="state"><b>Correct Answer:</b></label>
+	<input type="text" name="Correct Answer" list="correctanswer">
+    <datalist id="correctanswer">
+      <option value="Choice 1">
+      <option value="Choice 2">
+	  <option value="Choice 3">
+	  <option value="Choice 4">
+	  </datalist>
+	  
+	   <button type="submit" class="donebutton">Done</button>
+	 </hr> </form>
+	 
+</body>
+</html>
