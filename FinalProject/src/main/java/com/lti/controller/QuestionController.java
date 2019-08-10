@@ -5,17 +5,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lti.entity.TableStudent;
-import com.lti.service.StudentServiceImpl;
+import com.lti.entity.TableQuestion;
+import com.lti.service.QuestionServiceImpl;
 
 @RestController
-public class StudentController {
-
+public class QuestionController {
+	
 	@Autowired
-	private StudentServiceImpl studentService;
-
-	@PostMapping("/addStudent.lti")
-	public void addStudent(@RequestBody TableStudent student) {
-		studentService.addStudent(student);
+	private QuestionServiceImpl questionService;
+	
+	@PostMapping("/addQuestion.lti")
+	public void addStudent(@RequestBody TableQuestion question) {
+		questionService.addQuestion(question);
 	}
 }

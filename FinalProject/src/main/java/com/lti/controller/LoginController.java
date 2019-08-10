@@ -1,27 +1,35 @@
 package com.lti.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lti.entity.TableStudent;
-import com.lti.service.StudentService;
+import com.lti.service.AdminServiceImpl;
+import com.lti.service.StudentServiceImpl;
 
 @RestController
 public class LoginController {
 
 	@Autowired
-	private StudentService studentService;
+	private StudentServiceImpl studentService;
+	
+	@Autowired
+	private AdminServiceImpl adminService;
 
-	@PostMapping("/addStudent.lti")
-	public void add(@RequestBody TableStudent student) {
-		studentService.addStudent(student);
+	
+	@GetMapping("/validateStudentCredentials.lti")
+	public String validateStudentLoginCredentials(@RequestParam("email") String email,@RequestParam("pwd") String pwd) {
+		String value=studentService.validateStudentLoginCredentials(email, pwd);
+		return value;
 	}
-/*	@PostMapping("/validateStudent.lti")
-	public void validateLoginCredentials(@RequestBody String email, String password) {
-		studentService.
-	}*/
+	
+	@GetMapping("/validateAdminCredentials.lti")
+	public String validateAdminLoginCredentials(@RequestParam("email") String email,@RequestParam("pwd") String pwd) {
+		String value=adminService.validateAdminLoginCredentials(email, pwd);
+		
+		return value;
+	}
 }
 
 

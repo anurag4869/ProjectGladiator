@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="StudentRegister.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="statesAndCities.js"></script>
+    <script>
+        $(function () {
+            var boolean = true;
+            $('input').focus(
+                function () {
+                    $(this).val('').css({ "color": "black" });
+
+                });
+
+
+
+            $("#pwd").blur(function () {
+                var pwd = $("#pwd").val();
+                var pwdRegex = "";
+                if (pwd == "") {
+                    $("#pwd").val("Invalid Password")
+                        .css({ "color": "red", "text-align": "center", "font-weight": "bold", "border": "2px solid red", "box-shadow": "0 0 2px red" });
+                }
+
+            })
+
+
+            $("#confirmPwd").blur(function () {
+                var pwd = $("#pwd").val();
+                var confirmPwd = $("#confirmPwd").val();
+                if (confirmPwd == "" && confirmPwd == pwd) {
+                    $("#confirmPwd").val("Invalid Password")
+                        .css({ "color": "red", "text-align": "center", "font-weight": "bold", "border": "2px solid red", "box-shadow": "0 0 2px red" });
+                }
+
+                if (pwd == confirmPwd) {
+                    boolean = true;
+                }
+                else {
+                    $("#confirmPwd").val("Passowords Donot Match")
+                        .css({ "color": "red", "text-align": "center", "font-weight": "bold", "border": "2px solid red", "box-shadow": "0 0 2px red" });
+                }
+
+            })
+
+
+
+            $("#name").blur(function () {
+                var name = $("#name").val();
+                var nameRegex = /^[a-zA-Z ]+$/
+                if (name == "" || !nameRegex.test(name)) {
+                    $("#name").val("Please Enter Valid Name")
+                        .css({ "color": "red", "text-align": "center", "font-weight": "bold", "border": "2px solid red", "box-shadow": "0 0 2px red" });
+                }
+
+            })
+
+
+            $("#email").blur(function () {
+                var email = $("#email").val();
+                var emailRegex = new RegExp("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i");
+                if (email == "") {
+                    $("#email").val("Please Enter Valid Email")
+                        .css({ "color": "red", "text-align": "center", "font-weight": "bold", "border": "2px solid red", "box-shadow": "0 0 2px red" });
+                }
+
+            })
+
+
+
+            $("#mno").blur(function () {
+                var mno = $("#mno").val();
+                var mnoRegex = /^[0-9]{10}$/;
+                if (mno = "" || !mnoRegex.test(mno)) {
+                    $("#mno").val("Please Enter Valid Mobile Number")
+                        .css({ "color": "red", "text-align": "center", "font-weight": "bold", "border": "2px solid red", "box-shadow": "0 0 2px red" });
+
+                }
+            })
+
+
+
+         /*   $("#dob").blur(function () {
+                var dob=("#dob").val();
+                if (dob == "") {
+                    $("#dob").type("text").val("Please Enter Date")
+                        .css({ "color": "red", "text-align": "center", "font-weight": "bold", "border": "2px solid red", "box-shadow": "0 0 2px red" });
+                }
+            })*/
+
+
+
+
+
+            $("#addStudentForm").submit(function (evt) {
+                evt.preventDefault();
+
+                var pwd = $("#pwd").val();
+                var confirmPwd = $("#confirmPwd").val();
+                var name = $("#name").val();
+                var email = $("#email").val();
+                var mno = $("#mno").val();
+                var dob=$("#dob").val();
+                var city=$("#citySelect").val();
+
+              /*  alert(dob);
+                alert(pwd);
+                alert(confirmPwd);
+                alert(name);
+                alert(email);
+                alert(mno);
+                alert(city);
+*/
+                var boolean = true;
+                //////////////////////////// Validation onSubmit///////////////////////       
+                if (pwd == "") {
+                    $("#pwd").val("Invalid Password")
+                        .css({ "color": "red", "text-align": "center", "font-weight": "bold", "border": "2px solid red", "box-shadow": "0 0 2px red" });
+                    boolean = false;
+                    alert("Pwd "+boolean);
+                }
+
+                if (confirmPwd =="" && confirmPwd == pwd) {
+                    $("#pwd").val("Invalid Password")
+                        .css({ "color": "red", "text-align": "center", "font-weight": "bold", "border": "2px solid red", "box-shadow": "0 0 2px red" });
+                    boolean = false;
+                    alert("ConfirmPwd "+boolean);
+                }
+
+                var nameRegex = /^[a-zA-Z ]+$/
+                if (name == "" || !nameRegex.test(name)) {
+                    $("#name").val("Please Enter Valid Name")
+                        .css({ "color": "red", "text-align": "center", "font-weight": "bold", "border": "2px solid red", "box-shadow": "0 0 2px red" });
+                    boolean = false;
+                    alert("Name "+boolean);
+                }
+
+                var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+                if (email == "" || !emailRegex.test(email)) {
+                    $("#email").val("Please Enter Valid Email")
+                        .css({ "color": "red", "text-align": "center", "font-weight": "bold", "border": "2px solid red", "box-shadow": "0 0 2px red" });
+                    boolean = false;
+                    alert("Email "+boolean);
+                }
+                var mnoRegex = /^[0-9]{10}$/;
+                if (mno = "" || !mnoRegex.test(mno)) {
+                    $("#mno").val("Please Enter Valid Mobile Number")
+                        .css({ "color": "red", "text-align": "center", "font-weight": "bold", "border": "2px solid red", "box-shadow": "0 0 2px red" });
+                    boolean = false;
+                    alert("Mno "+boolean);
+
+                }
+               alert(boolean);
+
+                //////////////////////////// Validation onSubmit///////////////////////  
+
+                var obj = {
+                    studentName: $("#name").val(),
+                    studentEmail: $("#email").val(),
+                    studentMno: $("#mno").val(),
+                    studentDob: $("#dob").val(),
+                    studentCity: $("#citySelect").val(),
+                    studentState: $("#stateSelect").val(),
+                    studentYoc: $("#yoc").val(),
+                    studentPwd: $("#pwd").val()
+                }
+
+
+
+                if(boolean){
+
+                  $.ajax({
+                       url:'addStudent.lti',
+                       method:'POST',
+                       data: JSON.stringify(obj),
+                       contentType : 'application/json',
+                       success : function(response){
+                      alert(JSON.stringify(response));
+                           // $(".result").html(response.message);
+                       }
+                  })
+                }
+            })
+        })
+    </script>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+<ul class="sidenav">
+  <li><a  href="Home.html">Home</a></li>
+  <li><a href="AdminLogin.html">Admin</a></li>
+  <li><a href="StudentLogin.html">Student Login</a></li>
+  <li><a href="Reports.html">Reports</a></li>
+</ul>
+    <form id=addStudentForm name="register">
+
+        <div class="all">
+            <div class="container">
+                <h1>Register</h1>
+
+                <hr>
+                <label for="fullName">
+                    <b>Full Name:</b>
+                </label>
+                <input type="text" placeholder="Enter Full Name" name="fullName" id="name">
+                </br>
+                <div id="divName"></div>
+
+                <label for="email">
+                    <b>Email:</b>
+                </label>
+                <input type="text" placeholder="Enter Email" name="email" id="email">
+                </br>
+
+                <label for="mobile">
+                    <b>Mobile:</b>
+                </label>
+                <input type="tel" placeholder="Enter Mobile Number" name="mobile" id="mno" maxlength="10" />
+                </br>
+
+                <label for="dob">
+                    <b>DOB:</b>
+                </label>
+                <input type="date" placeholder="Enter DOB" name="dob" id="dob">
+                </br>
+
+
+                <label>
+                    <b>Select State:</b>
+                </label>
+                <select id="stateSelect" size="1" onchange="makeSubmenu(this.value)">
+                    <option value="" disabled selected>Choose State</option>
+                    <option>Odisha</option>
+                    <option>Maharashtra</option>
+                    <option>Kerala</option>
+                </select>
+
+                <label>
+                    <b>Select City</b>
+                </label>
+                <select id="citySelect" size="1">
+                    <option value="" disabled selected>Choose City</option>
+                    <option></option>
+                </select>
+
+
+                <label for="yoc">
+                    <b>Year Of Completion:</b>
+                </label>
+                <input type="number" placeholder="Enter Your Year Of Completion" name="yoc" id="yoc" maxlength="4">
+                </br>
+
+                <label for="pwd">
+                    <b>Password:</b>
+                </label>
+                <input type="text" placeholder="Password" name="pwd" id="pwd">
+                </br>
+
+                <label for="confirmPwd">
+                    <b>Confirm Password:</b>
+                </label>
+                <input type="text" placeholder="Confirm Password" name="confirmPwd" id="confirmPwd">
+                </br>
+
+                <hr>
+
+
+                <button type="submit" class="registerbutton">Register</button>
+            </div>
+
+        </div>
+
+
+    </form>
+</body>
+
+</html>

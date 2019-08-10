@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>LOG IN</title>
+<link rel="stylesheeet" href=AdminLogin.css >
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+<script>
+   $(function(){
+	   $("#loginForm").submit(function(evt){
+		   evt.preventDefault();
+		  
+				  var  studentEmail =$("#email").val();
+				   var studentPwd =$("#pwd").val();
+	
+		   alert(studentEmail);
+		   alert(studentPwd);
+		   
+		   $.ajax({
+				url:'validateAdminCredentials.lti?email='+studentEmail+'&pwd='+studentPwd,
+				method:'GET',
+				contentType : 'application/json',
+				success : function(response){
+			   alert(JSON.stringify(response));
+					if(response=="True")
+						{
+						 window.location.href = "Register.html";
+						}
+					else{
+						
+						window.location.href = "AdminLogin.html";
+						$(".all").html("Invalid Credentials");
+					}
+				}
+		   })
+	   })
+   })
+   </script>
+<body>
+<ul class="sidenav">
+  <li><a  href="Home.html">Home</a></li>
+  <li><a href="AdminLogin.html">Admin Login</a></li>
+  <li><a href="StudentRegister.html">Student Register</a></li>
+    <li><a href="StudentLogin.html">Student Login</a></li>
+  <li><a href="Reports.html">Reports</a></li>
+</ul>
+<form id="loginForm">
+
+   <div class="all">
+  <div class="container">
+    <h1>Login</h1>
+   
+    <hr>
+    
+    
+	
+	<label for="email"><b>Email:</b></label>
+    <input type="email" placeholder="Enter Email" name="email" required id="email"></br>
+
+    
+	<label for="password"><b>Password:</b></label>
+    <input type="password" placeholder="Enter Password"     minlength="8" name="password" id="pwd" required></br>
+   
+    <button type="submit" class="loginbutton">Login</button>
+  </div>
+  
+  </div>
+
+  
+</form>
+</body>
+</html>
