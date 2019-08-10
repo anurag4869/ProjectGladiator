@@ -4,6 +4,41 @@
 <meta charset="ISO-8859-1">
 <title>Add Questions</title>
 <link rel="stylesheet" href="AddQuestion.css">
+<script>
+ $("#addStudentForm").submit(function (evt) {
+                evt.preventDefault();
+                var obj = {
+                        studentName: $("#name").val(),
+                        studentEmail: $("#email").val(),
+                        studentMno: $("#mno").val(),
+                        studentDob: $("#dob").val(),
+                        studentCity: $("#citySelect").val(),
+                        studentState: $("#stateSelect").val(),
+                        studentYoc: $("#yoc").val(),
+                        studentPwd: $("#pwd").val()
+                    }
+
+
+
+      if(boolean){
+
+                      $.ajax({
+                           url:'addStudent.lti',
+                           method:'POST',
+                           data: JSON.stringify(obj),
+                           contentType : 'application/json',
+                           success : function(response){
+                          alert(JSON.stringify(response));
+                               // $(".result").html(response.message);
+                           }
+                      })
+                    }
+                })
+            })       
+                
+ })
+                
+                </script>
 </head>
 <body>
 
