@@ -5,17 +5,18 @@
 <title>Add Questions</title>
 <link rel="stylesheet" href="AddQuestion.css">
 <script>
- $("#addStudentForm").submit(function (evt) {
+ $("#addQuestionForm").submit(function (evt) {
                 evt.preventDefault();
                 var obj = {
-                        studentName: $("#name").val(),
-                        studentEmail: $("#email").val(),
-                        studentMno: $("#mno").val(),
-                        studentDob: $("#dob").val(),
-                        studentCity: $("#citySelect").val(),
-                        studentState: $("#stateSelect").val(),
-                        studentYoc: $("#yoc").val(),
-                        studentPwd: $("#pwd").val()
+                        question: $("#question").val(),
+                        choiceOne: $("#choice1").val(),
+                        choiceTwo: $("#choice2").val(),
+                        choiceThree: $("#choice3").val(),
+                        choiceFour: $("#choice4").val(),
+                        questionLevel: $("#level").val(),
+                        correctAns: $("#correctanswer").val()
+                        subject:
+                       
                     }
 
 
@@ -23,7 +24,7 @@
       if(boolean){
 
                       $.ajax({
-                           url:'addStudent.lti',
+                           url:'addQuestion.lti',
                            method:'POST',
                            data: JSON.stringify(obj),
                            contentType : 'application/json',
@@ -42,7 +43,7 @@
 </head>
 <body>
 
-<form>
+<form id ="addQuestionForm">
 
   <div class="container">
     <h3>Add Question</h3>
@@ -50,32 +51,32 @@
    
     <hr>
     <label for="question"><b>Question:</b></label>
-	<input type="text" placeholder="Enter Question" name="question" required></br>
+	<input type="text" placeholder="Enter Question" name="question" required id="question"></br>
     
 	
 	<label for="choice1"><b>Choice 1:</b></label>
-    <input type="text" placeholder="Enter Choice 1" name="choice1" required></br>
+    <input type="text" placeholder="Enter Choice 1" name="choice1" required id="choice1"></br>
 
     <label for="choice2"><b>choice 2:</b></label>
-    <input type="text" placeholder="Enter Choice 2" name="choice2" pattern="[0-9]{10}" maxlength="10" ></br>
+    <input type="text" placeholder="Enter Choice 2" name="choice2" pattern="[0-9]{10}" maxlength="10" id="choice2"></br>
 	
 	<label for="choice3"><b>choice 3:</b></label>
-    <input type="text" placeholder="Enter Choice 3" name="choice3" required></br>
+    <input type="text" placeholder="Enter Choice 3" name="choice3" required id="choice3"></br>
 
     <label for="choice4"><b>Choice 4:</b></label>
-    <input type="text" placeholder="Enter Choice 4" name="choice4" required>
+    <input type="text" placeholder="Enter Choice 4" name="choice4"  id="choice4" required>
 	
-	<label for="state"><b>Level:</b></label>
+	<label for="level"><b>Level:</b></label>
 	
-	<input type="text" name="Level" list="level">
+	<input type="text" name="Level" id="level"list="level">
     <datalist id="level">
       <option value="Level 1">
       <option value="Level 2">
 	  <option value="Level 3">
 	  </datalist>
 	 
-	 <label for="state"><b>Correct Answer:</b></label>
-	<input type="text" name="Correct Answer" list="correctanswer">
+	 <label for="correctanswer"><b>Correct Answer:</b></label>
+	<input type="text" name="Correct Answer" list="correctanswer" id="correctanswer">
     <datalist id="correctanswer">
       <option value="Choice 1">
       <option value="Choice 2">
