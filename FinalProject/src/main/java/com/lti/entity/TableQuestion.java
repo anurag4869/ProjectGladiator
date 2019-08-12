@@ -1,12 +1,19 @@
 package com.lti.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="TABLE_QUESTION")
@@ -39,7 +46,20 @@ public class TableQuestion {
 	
 	@ManyToOne
 	@JoinColumn(name="SUBJECT_ID")
+	@JsonBackReference
 	private TableSubject subject;
+	
+	@OneToMany(mappedBy="testDetailsQuestion" ,cascade=CascadeType.ALL)
+	@JsonManagedReference
+	private List<TableTestDetails> testDetailsQuestionList;
+
+	public List<TableTestDetails> getTestDetailsQuestionList() {
+		return testDetailsQuestionList;
+	}
+
+	public void setTestDetailsQuestionList(List<TableTestDetails> testDetailsQuestionList) {
+		this.testDetailsQuestionList = testDetailsQuestionList;
+	}
 
 	public int getQuestionId() {
 		return questionId;

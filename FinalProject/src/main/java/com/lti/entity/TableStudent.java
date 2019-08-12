@@ -1,13 +1,17 @@
 package com.lti.entity;
 
 import java.sql.Date;
-import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="TABLE_STUDENT")
@@ -41,6 +45,18 @@ public class TableStudent {
 	
 	@Column(name="STUDENT_PWD") 
 	String studentPwd;
+	
+	@OneToMany(mappedBy="testStudent" ,cascade=CascadeType.ALL)
+	@JsonIgnore
+	private List<TableTest> testStudents;
+
+	public List<TableTest> getTestStudents() {
+		return testStudents;
+	}
+
+	public void setTestStudents(List<TableTest> testStudents) {
+		this.testStudents = testStudents;
+	}
 
 	public String getStudentPwd() {
 		return studentPwd;

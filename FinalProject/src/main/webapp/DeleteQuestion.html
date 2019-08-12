@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+ <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+ <script>
+ $(function(){
+	 /*$("#allQuestionDetails").submit(function(evt){
+		 evt.preventDefault();*/
+		 
+		 $.ajax({
+			 url:'getAllQuestions.lti',
+			 method:'POST',
+			 dataType:'JSON',
+			contentType:'application/json',
+			success:function(response){
+				var questionSelect =$("<select/>");
+				questionSelect.attr("id","questionSelect");
+				$.each(response, function(index,question){
+				//alert(JSON.stringify(emp));
+					var questionOption = $("<option/>") .attr("value",question.questionId).text(question.question);
+					questionSelect.append(questionOption);	
+				/*alert("hii");
+				for(i=0; i<response.length; i++){
+				$(".result").append(response[i].question);*/
+			
+				})
+				$("#allQuestionDetails").append(questionSelect);
+				}
+		 })
+		 
+		 var btn = $("<button/>") .attr("type","submit") .text("Delete");
+				$("#allQuestionDetails").append(btn);
+				$("#allQuestionDetails").submit(function(evt) {
+					evt.preventDefault();
+					var selectedQuestionId = $("#questionSelect").val();
+					
+					alert(selectedQuestionId);
+					$.ajax({
+						url:'deleteQuestion.lti?questionId='+selectedQuestionId,
+						method : 'GET',
+						success : function(response){
+							alert(JSON.stringify(response));
+						}
+						})
+		 
+		 
+		 
+	 })
+	 
+	 
+ })
+ 
+ </script>
+</head>
+<body>
+<form id="allQuestionDetails">
+
+<!--  <div id="myHeader" class="result"></div>-->
+</form>
+</body>
+</html>

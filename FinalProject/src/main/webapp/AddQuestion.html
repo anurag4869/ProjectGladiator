@@ -3,41 +3,54 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Add Questions</title>
+ <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <link rel="stylesheet" href="AddQuestion.css">
 <script>
- $("#addQuestionForm").submit(function (evt) {
+ $(function(){
+	 $("#addQuestionForm").submit(function (evt) {
                 evt.preventDefault();
-                var obj = {
+                
+                var questionObj = {
                         question: $("#question").val(),
                         choiceOne: $("#choice1").val(),
                         choiceTwo: $("#choice2").val(),
                         choiceThree: $("#choice3").val(),
                         choiceFour: $("#choice4").val(),
                         questionLevel: $("#level").val(),
-                        correctAns: $("#correctanswer").val(),
-                        subjectId:'123'
+                        correctAns: $("#correctAnswer").val()
+                  
                        
                     }
-
-
-
-      if(boolean){
-
+                //var subjectId=1;
+                var subjectObj={
+                		subjectId:1
+                }
+              
+               
                       $.ajax({
                            url:'addQuestion.lti',
                            method:'POST',
-                           data: JSON.stringify(obj),
+                           data: JSON.stringify(questionObj),
                            contentType : 'application/json',
                            success : function(response){
-                          alert(JSON.stringify(response));
+                        	   alert(JSON.stringify(response));
+                        	   $.ajax({
+                        		   url:'addQuestionForSubject.lti',
+                        		   method:'POST',
+                        		   data:JSON.stringify(subjectObj),
+                        		   contentType : 'application/json',
+                        		   success : function(response){
+                        			   alert(JSON.stringify(response));
+                        		   }
+                         })
+                          
                                // $(".result").html(response.message);
                            }
                       })
-                    }
-                })
-            })       
+                    
+            })    
+ })   
                 
- })
                 
                 </script>
 </head>
@@ -58,7 +71,7 @@
     <input type="text" placeholder="Enter Choice 1" name="choice1" required id="choice1"></br>
 
     <label for="choice2"><b>choice 2:</b></label>
-    <input type="text" placeholder="Enter Choice 2" name="choice2" pattern="[0-9]{10}" maxlength="10" id="choice2"></br>
+    <input type="text" placeholder="Enter Choice 2" name="choice2"  id="choice2"></br>
 	
 	<label for="choice3"><b>choice 3:</b></label>
     <input type="text" placeholder="Enter Choice 3" name="choice3" required id="choice3"></br>
@@ -67,23 +80,13 @@
     <input type="text" placeholder="Enter Choice 4" name="choice4"  id="choice4" required>
 	
 	<label for="level"><b>Level:</b></label>
+	<input type="number" name="level"  id="level">
 	
-	<input type="text" name="Level" id="level"list="level">
-    <datalist id="level">
-      <option value="Level 1">
-      <option value="Level 2">
-	  <option value="Level 3">
-	  </datalist>
 	 
 	 <label for="correctanswer"><b>Correct Answer:</b></label>
-	<input type="text" name="Correct Answer" list="correctanswer" id="correctanswer">
-    <datalist id="correctanswer">
-      <option value="Choice 1">
-      <option value="Choice 2">
-	  <option value="Choice 3">
-	  <option value="Choice 4">
-	  </datalist>
-	  
+	<input type="text" name="Correct Answer"  id="correctAnswer">
+	
+		  
 	   <button type="submit" class="donebutton">Done</button>
 	 </hr> </form>
 	 

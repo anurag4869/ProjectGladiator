@@ -17,9 +17,9 @@ public class GenericDaoImpl implements GenericDao{
 	@PersistenceContext
 	protected EntityManager entityManager;
 
-	public void save(Object obj) {
+	public Object save(Object obj) {
 		// TODO Auto-generated method stub
-		 entityManager.merge(obj);
+		 return entityManager.merge(obj);
 		 
 	}
 		public <E> E fetchById(Class<E> clazz, Object pk){
@@ -31,6 +31,11 @@ public class GenericDaoImpl implements GenericDao{
 			return entityManager.createQuery(q).getResultList();
 		}
 
+		public void delete(Class clazz,Object pk) {
+			Object object=entityManager.find(clazz,pk);
+			
+			entityManager.remove(object);
+		}
 	
 	
 

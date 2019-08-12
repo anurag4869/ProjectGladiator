@@ -1,6 +1,6 @@
 package com.lti.entity;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,6 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -24,8 +27,21 @@ public class TableSubject {
 	private String subjectName;
 	
 	@OneToMany(mappedBy="subject" ,cascade=CascadeType.ALL)
-	private Set<TableQuestion> questions;
+	@JsonManagedReference
+	private List<TableQuestion> questions;
 	
+	@OneToMany(mappedBy="testSubject" ,cascade=CascadeType.ALL)
+	@JsonIgnore
+	private List<TableTest> subjectTests;
+	
+	public List<TableTest> getSubjectTests() {
+		return subjectTests;
+	}
+
+	public void setSubjectTests(List<TableTest> subjectTests) {
+		this.subjectTests = subjectTests;
+	}
+
 	public int getSubjectId() {
 		return subjectId;
 	}
@@ -42,13 +58,15 @@ public class TableSubject {
 		this.subjectName = subjectName;
 	}
 
-	public Set<TableQuestion> getQuestions() {
+	public List<TableQuestion> getQuestions() {
 		return questions;
 	}
 
-	public void setQuestions(Set<TableQuestion> questions) {
+	public void setQuestions(List<TableQuestion> questions) {
 		this.questions = questions;
 	}
+
+	
 
 
 }
