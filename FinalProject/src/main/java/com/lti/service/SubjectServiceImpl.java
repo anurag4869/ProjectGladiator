@@ -1,9 +1,10 @@
 package com.lti.service;
 
-import javax.transaction.Transactional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lti.dao.GenericDaoImpl;
 import com.lti.entity.TableSubject;
@@ -16,6 +17,8 @@ public class SubjectServiceImpl {
 	
 	@Transactional
 	public void addSubject(TableSubject subject) {
-	dao.save(subject);
+		subject.setSubjectName("PHP");
+		//System.out.println("Service");
+		dao.save(subject);
 }
 }

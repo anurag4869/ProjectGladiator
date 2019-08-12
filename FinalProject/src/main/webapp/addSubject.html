@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+	$(function(){
+		$("#frmSubject").submit(function(evt){
+			evt.preventDefault();
+			//var subjectName=$("#subjectName").val();
+			var obj={subjectName:$("#subjectName").val()}
+			//alert(subjectName);
+			
+			$.ajax({
+				url:'addSubject.lti',
+				method:'POST',
+				data:JSON.stringify(obj),
+				contentType : 'application/json',
+				success:function(response){
+					alert(JSON.stringify(response));
+				}
+			})
+			
+			
+		})
+		
+		
+	})
+
+</script>
+
+
+</head>
+<body>
+<form id="frmSubject">
+Subject Name:<input type="text" id="subjectName"/><br>
+<button type="submit" id="subBtn">Add Subject</button>
+</form>
+</body>
+</html>
