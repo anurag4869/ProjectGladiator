@@ -1,5 +1,7 @@
 package com.lti.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -29,5 +31,52 @@ public class AdminDaoImpl {
 			
 		}
 		return admin;
+		
+		
+		
 	}
+	
+	public List<TableStudent> searchStudents(String subjectName,String studentState,String studentCity,int questionLevel, int score){
+	
+		//String query="select s.StudentName from TableStudent s where s.STUDENT_ID in( select stud.STUDENT_ID from Tabl_STUDENT stud, TABLE_TEST t, TABLE_SUBJECT sub, TABLE_USER_RESULT ur, TABLE_CURR_TEST ct where\r\n" + 
+			//	"sub.SUBJECT_NAME='JAVA' and stud.STUDENT_CITY='THANE' and stud.STUDENT_STATE='MAHARASHTRA' and ur.QUESTION_LEVEL=1 and \r\n" + 
+				//"ur.SCORE=1) ;\r\n" + 
+				//" ";
+		
+		
+		System.out.println("daooooooooo");
+		
+		System.out.println(subjectName);
+		System.out.println(studentState);
+		System.out.println(studentCity);
+		System.out.println(questionLevel);
+		System.out.println(score);
+		
+		String query=" select stud from TableStudent stud, TableTest t, TableSubject subj, TableUserResult ur where "+
+		"subj.subjectName = :subjectName and stud.studentCity = :studentCity and stud.studentState = :studentState and ur.questionLevel = :questionLevel " +
+				"and ur.score = :score and stud.studentId = t.testStudent.studentId and subj.subjectId = t.testSubject.subjectId and t.testId = ur.testUserResult.testId";
+		
+	//	String query= "Select s from TableStudent s, TableTest t where s.studentId=t.testStudent.studentId";
+	    Query q = entityManager.createQuery(query);
+		q.setParameter("subjectName", subjectName);
+		q.setParameter("studentState", studentState);
+		q.setParameter("studentCity", studentCity);
+		q.setParameter("questionLevel", questionLevel);
+		q.setParameter("score", score);
+		System.out.println("hey");	
+		List<TableStudent> listOfStudents=q.getResultList();
+		System.out.println(listOfStudents.size());
+		
+		/*for(TableStudent t: listOfStudents)
+		{
+		System.out.println(t.getStudentName());	
+		System.out.println("heydao");	
+		}*/
+		return listOfStudents;
+		
+		
+		
+	}
+	
+	
 }
