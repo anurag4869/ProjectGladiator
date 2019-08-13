@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
@@ -26,12 +27,12 @@ public class TableSubject {
 	@Column(name="SUBJECT_NAME")
 	private String subjectName;
 	
-	@OneToMany(mappedBy="subject" ,cascade=CascadeType.ALL)
-	@JsonManagedReference
-	private List<TableQuestion> questions;
-	
-	@OneToMany(mappedBy="testSubject" ,cascade=CascadeType.ALL)
 	@JsonIgnore
+	@OneToMany(mappedBy="subject" ,cascade=CascadeType.ALL)
+	private List<TableQuestion> subjectQuestions;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="testSubject" ,cascade=CascadeType.ALL)
 	private List<TableTest> subjectTests;
 	
 	public List<TableTest> getSubjectTests() {
@@ -58,13 +59,15 @@ public class TableSubject {
 		this.subjectName = subjectName;
 	}
 
-	public List<TableQuestion> getQuestions() {
-		return questions;
+	public List<TableQuestion> getSubjectQuestions() {
+		return subjectQuestions;
 	}
 
-	public void setQuestions(List<TableQuestion> questions) {
-		this.questions = questions;
+	public void setSubjectQuestions(List<TableQuestion> subjectQuestions) {
+		this.subjectQuestions = subjectQuestions;
 	}
+
+	
 
 	
 

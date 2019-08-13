@@ -25,22 +25,42 @@ public class TableTest {
 	@Column(name="TEST_ID")
 	private int testId;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="SUBJECT_ID")
 	@JsonBackReference
 	private TableSubject testSubject;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="STUDENT_ID")
-	
 	private TableStudent testStudent;
 	
 	@OneToMany(mappedBy="testDetailsTest" ,cascade=CascadeType.ALL)
 	@JsonIgnore
 	private List<TableTestDetails> testDetailsTestList;
 	
+	@JsonIgnore
 	@OneToOne(mappedBy="testUserResult",cascade = CascadeType.ALL)
 	private TableUserResult testResult;
+	
+	public List<TableTestDetails> getTestDetailsTestList() {
+		return testDetailsTestList;
+	}
+
+	public void setTestDetailsTestList(List<TableTestDetails> testDetailsTestList) {
+		this.testDetailsTestList = testDetailsTestList;
+	}
+
+	public TableUserResult getTestResult() {
+		return testResult;
+	}
+
+	public void setTestResult(TableUserResult testResult) {
+		this.testResult = testResult;
+	}
+
+	
 
 	public int getTestId() {
 		return testId;

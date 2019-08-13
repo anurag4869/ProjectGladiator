@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="TABLE_USER_RESULT")
 public class TableUserResult {
@@ -26,6 +28,7 @@ public class TableUserResult {
 	@Column(name="QUESTION_LEVEL")
 	private int questionLevel;
 	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="TEST_ID") //fk
 	private TableTest testUserResult;

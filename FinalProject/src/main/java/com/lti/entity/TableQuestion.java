@@ -12,8 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="TABLE_QUESTION")
@@ -44,13 +44,13 @@ public class TableQuestion {
 	@Column(name="QUESTION_LEVEL")
 	private int questionLevel;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="SUBJECT_ID")
-	@JsonBackReference
 	private TableSubject subject;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="testDetailsQuestion" ,cascade=CascadeType.ALL)
-	@JsonManagedReference
 	private List<TableTestDetails> testDetailsQuestionList;
 
 	public List<TableTestDetails> getTestDetailsQuestionList() {

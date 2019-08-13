@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="TABLE_TEST_DETAILS")
 public class TableTestDetails {
@@ -23,9 +25,15 @@ public class TableTestDetails {
 	@Column(name="USER_RESPONSE")
 	private String userResponse;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="QUESTION_ID")
 	private TableQuestion testDetailsQuestion;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="TEST_ID")
+	private TableTest testDetailsTest;
 	
 	public int getCurrentId() {
 		return currentId;
@@ -67,7 +75,5 @@ public class TableTestDetails {
 		this.testDetailsTest = testDetailsTest;
 	}
 
-	@ManyToOne
-	@JoinColumn(name="TEST_ID")
-	private TableTest testDetailsTest;
+	
 }

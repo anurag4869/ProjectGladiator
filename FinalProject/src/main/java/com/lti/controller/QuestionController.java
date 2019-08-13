@@ -50,7 +50,6 @@ public class QuestionController {
 	@PostMapping("/getAllQuestions.lti")
 	public List<TableQuestion> displayAllQuestion(){
 		List<TableQuestion>list=questionService.getAllQuestions();
-		
 		return list;
 	}
 	
