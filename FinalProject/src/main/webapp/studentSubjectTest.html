@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="displayQuestionForStudent.js"></script>
+<script>
+$(function(){
+	$.ajax({
+		url:'getAllSubjects.lti',
+		 method:'POST',
+		 dataType:'JSON',
+		contentType:'application/json',
+		success:function(response){
+	
+			$.each(response,function(index,subject){
+				var buttonSubject=$("<button>").attr("id",subject.subjectId).attr("class","approve-btn").text(subject.subjectName);
+				$("#allSubjects").append(buttonSubject);
+				
+			})
+			
+			
+		}
+		
+	})
+})
+</script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="allSubjects"></div>
+<div id="divQuestion"></div>
+<button type="submit" id="submitTest">Submit Test</button>
+</body>
+</html>

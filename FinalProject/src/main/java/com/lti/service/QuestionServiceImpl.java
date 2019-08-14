@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lti.dao.GenericDaoImpl;
-import com.lti.dto.Status;
+import com.lti.dao.QuestionDaoImpl;
 import com.lti.entity.TableQuestion;
 import com.lti.entity.TableSubject;
 
@@ -18,6 +18,9 @@ public class QuestionServiceImpl {
 	
 	@Autowired
 	private GenericDaoImpl dao;
+	
+	@Autowired
+	private QuestionDaoImpl questionDao;
 	
 	@Transactional
 	public int addQuestion(TableQuestion question) {
@@ -48,5 +51,13 @@ public class QuestionServiceImpl {
 	
 		dao.delete(TableQuestion.class, questionId);
 	}
+	
+	public List<TableQuestion> getQuestionForStudent(int subjectId){
+		List<TableQuestion> list=questionDao.fetchQuestionsById(subjectId);
+		return list;
+		
+	}
+	
+	
 	
 }

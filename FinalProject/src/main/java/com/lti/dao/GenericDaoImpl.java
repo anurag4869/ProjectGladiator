@@ -26,6 +26,7 @@ public class GenericDaoImpl implements GenericDao{
 			return entityManager.find(clazz, pk);
 		}
 		
+				
 		public <E> List<E> fetchAll(Class<E> clazz) {
 			String q="select obj from " + clazz.getName() + " as obj";
 			return entityManager.createQuery(q).getResultList();
@@ -36,6 +37,7 @@ public class GenericDaoImpl implements GenericDao{
 			
 			entityManager.remove(object);
 		}
+	
 	
 	
 
