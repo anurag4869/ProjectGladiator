@@ -4,6 +4,8 @@ public class TestTableDataDTO {
 	private int studentId;
 	private int subjectId;
 	
+		
+	
 	public int getStudentId() {
 		return studentId;
 	}
@@ -16,6 +18,8 @@ public class TestTableDataDTO {
 	public void setSubjectId(int subjectId) {
 		this.subjectId = subjectId;
 	}
+	
+	
 	
 	
 }

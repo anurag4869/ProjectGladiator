@@ -16,14 +16,15 @@ public class TestServiceImpl {
 	private GenericDaoImpl dao;
 	
 	@Transactional
-	public void addToTestTable(int studentId,int subjectId) {
+	public TableTest addToTestTable(int studentId,int subjectId) {
 	TableStudent student=dao.fetchById(TableStudent.class, studentId);
 	TableSubject subject=dao.fetchById(TableSubject.class, subjectId);
 	TableTest test=new TableTest();
 	test.setTestStudent(student);
 	test.setTestSubject(subject);
 	
-	dao.save(test);
+	TableTest toFetchTestId=(TableTest) dao.save(test);
+	return toFetchTestId;
 	
 	}
 
