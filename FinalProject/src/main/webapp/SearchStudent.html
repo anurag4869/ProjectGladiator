@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Search Student</title>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+$(function(){
+	   $("#search").submit(function(evt){
+		   evt.preventDefault();
+		  
+				  var  subjectName =$("#subject").val();
+				   var studentState =$("#state").val();
+				   var studentCity=$("#city").val();
+				   var questionLevel=$("#level").val();
+				   var score=$("#score").val();
+	
+		   alert(subjectName);
+		   alert(studentState);
+		   
+		   $.ajax({
+				url:'searchStudents.lti?subjectName='+subjectName+'&studentState='+studentState+'&studentCity='+studentCity+'&questionLevel='+questionLevel+'&score='+score,
+				method:'GET',
+				contentType : 'application/json',
+				success : function(response){
+			   alert(JSON.stringify(response));
+					/*if(response=="True")
+						{
+						 window.location.href = "StudentRegister.html";
+						}
+					else{
+						
+						window.location.href = "SearchStudent.html";
+						$(".all").html("No data found");
+					}*/
+				}
+		   })
+	   })
+})
+</script>
+</head>
+<body>
+<form id="search">
+<select id= "subject">
+  <option value="Java">Java</option>
+  <option value="C#">C#</option>
+</select>
+
+<select id="state">
+  <option value="MAHARASHTRA">Maharashtra</option>
+  <option value="RAJASTHAN">Rajasthan</option>
+  <option value="Goa">Goa</option>
+  <option value="Gujrat">Gujrat</option>
+</select>
+
+<select id = "city">
+  <option value="Mumbai">Mumbai</option>
+  <option value="THANE">Thane</option>
+  <option value="JAIPUR">JAIPUR</option>
+  <option value="NAGPUR">Nagpur</option>
+</select>
+	
+<select id = "level">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+</select>	
+
+<select id = "score">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+</select>	
+  <button type="submit" class="searchbtn">Search</button>
+  </form>
+</body>
+</html>

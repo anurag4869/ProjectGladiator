@@ -44,6 +44,9 @@ public class TableQuestion {
 	@Column(name="QUESTION_LEVEL")
 	private int questionLevel;
 	
+	@Column(name="QUESTION_STATUS")
+	private int questionStatus;
+	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="SUBJECT_ID")
