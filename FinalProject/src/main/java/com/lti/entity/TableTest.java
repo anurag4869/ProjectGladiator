@@ -28,7 +28,6 @@ public class TableTest {
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="SUBJECT_ID")
-	@JsonBackReference
 	private TableSubject testSubject;
 	
 	@JsonIgnore
@@ -85,5 +84,12 @@ public class TableTest {
 	public void setTestStudent(TableStudent testStudent) {
 		this.testStudent = testStudent;
 	}
+
+	@Override
+	public String toString() {
+		return "TableTest [testId=" + testId + ", testSubject=" + testSubject + ", testStudent=" + testStudent
+				+ ", testDetailsTestList=" + testDetailsTestList + ", testResult=" + testResult + "]";
+	}
+	
 	
 }
