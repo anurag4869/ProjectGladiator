@@ -11,8 +11,11 @@ import org.springframework.stereotype.Repository;
 
 import com.lti.entity.TableQuestion;
 
+
+
 @Repository
 public class QuestionDaoImpl {
+	static int questionNumber =0;
 
 	@PersistenceContext
 	protected EntityManager entityManager;
@@ -31,8 +34,10 @@ public class QuestionDaoImpl {
 		Query query=entityManager.createQuery(q);
 		query.setParameter("sid", pk);
 		List<TableQuestion>list=query.getResultList();
-		return  list;
+		
 	//	return entityManager.createQuery(q).getResultList();
+		return list;
+		
 	}
 
 }
