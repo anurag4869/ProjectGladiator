@@ -4,55 +4,9 @@
 <meta charset="ISO-8859-1">
 <title>Add Questions</title>
  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+ <script src="addQuestionForAdmin2.js"></script>
 <link rel="stylesheet" href="AddQuestion.css">
-<script>
- $(function(){
-	 $("#addQuestionForm").submit(function (evt) {
-                evt.preventDefault();
-                
-                var questionObj = {
-                        question: $("#question").val(),
-                        choiceOne: $("#choice1").val(),
-                        choiceTwo: $("#choice2").val(),
-                        choiceThree: $("#choice3").val(),
-                        choiceFour: $("#choice4").val(),
-                        questionLevel: $("#level").val(),
-                        correctAns: $("#correctAnswer").val()
-                  
-                       
-                    }
-                //var subjectId=1;
-                var subjectObj={
-                		subjectId:1
-                }
-              
-               
-                      $.ajax({
-                           url:'addQuestion.lti',
-                           method:'POST',
-                           data: JSON.stringify(questionObj),
-                           contentType : 'application/json',
-                           success : function(response){
-                        	   alert(JSON.stringify(response));
-                        	   $.ajax({
-                        		   url:'addQuestionForSubject.lti',
-                        		   method:'POST',
-                        		   data:JSON.stringify(subjectObj),
-                        		   contentType : 'application/json',
-                        		   success : function(response){
-                        			   alert(JSON.stringify(response));
-                        		   }
-                         })
-                          
-                               // $(".result").html(response.message);
-                           }
-                      })
-                    
-            })    
- })   
-                
-                
-                </script>
+
 </head>
 <body>
 
@@ -92,7 +46,7 @@
 	</select>
 	
 		  
-	   <button type="submit" class="donebutton">Done</button>
+	   <button type="submit" class="donebutton"  id="btn">Done</button>
 	 </hr> </form>
 	 
 </body>
