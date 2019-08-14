@@ -14,25 +14,20 @@ $(function(){
 				   var studentCity=$("#city").val();
 				   var questionLevel=$("#level").val();
 				   var score=$("#score").val();
+				   var subjectNameEncoded=encodeURIComponent(subjectName);
 	
 		   alert(subjectName);
 		   alert(studentState);
+		   //var url='searchStudents.lti?subjectName='+subjectName+'&studentState='+studentState+'&studentCity='+studentCity+'&questionLevel='+questionLevel+'&score='+score;
+		   //var encodedUri=encodeURI(url)
 		   
 		   $.ajax({
-				url:'searchStudents.lti?subjectName='+subjectName+'&studentState='+studentState+'&studentCity='+studentCity+'&questionLevel='+questionLevel+'&score='+score,
+				url:'searchStudents.lti?subjectName='+subjectNameEncoded+'&studentState='+studentState+'&studentCity='+studentCity+'&questionLevel='+questionLevel+'&score='+score,
 				method:'GET',
 				contentType : 'application/json',
 				success : function(response){
 			   alert(JSON.stringify(response));
-					/*if(response=="True")
-						{
-						 window.location.href = "StudentRegister.html";
-						}
-					else{
-						
-						window.location.href = "SearchStudent.html";
-						$(".all").html("No data found");
-					}*/
+			   $(".divId").append(response);
 				}
 		   })
 	   })
@@ -47,7 +42,7 @@ $(function(){
 </select>
 
 <select id="state">
-  <option value="MAHARASHTRA">Maharashtra</option>
+  <option value="MAHARASHTRA">MAHARASHTRA</option>
   <option value="RAJASTHAN">Rajasthan</option>
   <option value="Goa">Goa</option>
   <option value="Gujrat">Gujrat</option>
@@ -55,7 +50,7 @@ $(function(){
 
 <select id = "city">
   <option value="Mumbai">Mumbai</option>
-  <option value="THANE">Thane</option>
+  <option value="THANE">THANE</option>
   <option value="JAIPUR">JAIPUR</option>
   <option value="NAGPUR">Nagpur</option>
 </select>
@@ -73,5 +68,6 @@ $(function(){
 </select>	
   <button type="submit" class="searchbtn">Search</button>
   </form>
+  <div class=divId></div>
 </body>
 </html>

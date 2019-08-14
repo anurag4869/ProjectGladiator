@@ -52,28 +52,24 @@ public class AdminDaoImpl {
 		System.out.println(questionLevel);
 		System.out.println(score);
 		
-		String query=" select stud from TableStudent stud, TableTest t, TableSubject subj, TableUserResult ur where "+
-		"subj.subjectName = :subjectName and stud.studentCity = :studentCity and stud.studentState = :studentState and ur.questionLevel = :questionLevel " +
-				"and ur.score = :score and stud.studentId = t.testStudent.studentId and subj.subjectId = t.testSubject.subjectId and t.testId = ur.testUserResult.testId";
+		String query=" select stud from TableStudent as stud join stud.testStudents as ts join ts.testSubject as sub join ts.testResult as result where "+
+		"sub.subjectName = :subjectName and stud.studentCity = :studentCity and stud.studentState = :studentState and result.questionLevel = :questionLevel " +
+				"and result.score = :score";
 		
-	//	String query= "Select s from TableStudent s, TableTest t where s.studentId=t.testStudent.studentId";
 	    Query q = entityManager.createQuery(query);
-		q.setParameter("subjectName", subjectName);
-		q.setParameter("studentState", studentState);
-		q.setParameter("studentCity", studentCity);
+	    q.setParameter("studentCity", studentCity);
+	    q.setParameter("studentState", studentState);
+	    q.setParameter("subjectName", subjectName);
+		
+		
+		
 		q.setParameter("questionLevel", questionLevel);
 		q.setParameter("score", score);
 		System.out.println("hey");	
-		List<TableStudent> listOfStudents=q.getResultList();
-		System.out.println(listOfStudents.size());
-		
-		/*for(TableStudent t: listOfStudents)
-		{
-		System.out.println(t.getStudentName());	
-		System.out.println("heydao");	
-		}*/
-		return listOfStudents;
-		
+	
+		List<TableStudent> list = q.getResultList();
+		System.out.println("=======>" + list.size());
+		return list;
 		
 		
 	}

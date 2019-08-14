@@ -47,6 +47,14 @@ public class TableQuestion {
 	@Column(name="QUESTION_STATUS")
 	private int questionStatus;
 	
+	public int getQuestionStatus() {
+		return questionStatus;
+	}
+
+	public void setQuestionStatus(int questionStatus) {
+		this.questionStatus = questionStatus;
+	}
+
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="SUBJECT_ID")
