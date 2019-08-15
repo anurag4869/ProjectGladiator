@@ -1,17 +1,19 @@
 $(function(){
 		var list;
 		var count=1;
-		var test;
+		var subjectId;
+		var testId;
+		var counter=0;
 		$("#allSubjects").on("click",".approve-btn",function(evt){
 			evt.preventDefault();
 			// var btnText=$(this).text();
 			// alert(btnText);
-			 test = $(this).attr("id");
-			alert(test);
+			subjectId = $(this).attr("id");
+			alert(subjectId);
 			// var sid = $("#1").val();
 						
 			var subjectObj={
-					subjectId:test
+					subjectId:subjectId
 			}
 			$("#allSubjects").hide();
 			
@@ -51,7 +53,7 @@ $(function(){
 	    	//alert(test);
 	    	var tableTestObj={
 	    			studentId:1,
-	    			subjectId:test
+	    			subjectId:subjectId
 	    	}
 	    	//alert("SubjectId"+tableTestObj.subjectId);
 	    	$.ajax({
@@ -61,45 +63,76 @@ $(function(){
 				contentType:'application/json',
 				success:function(response){
 					alert("done");
+					testId=JSON.stringify(response.testId);
+					alert(testId);
+					
 				}
 	    		
 	    		
-	    	})
-	    	
+	    	}) 	
 	    	
 	    	
 	    	$("#divQuestion").empty();
-			$("#divQuestion").append(list[0].question);
+			$("#divQuestion").append(list[counter].question);
 			$("#divQuestion").append("<br>");
-			$("#divQuestion").append($('<input type="radio" name="choice">'+list[0].choiceOne+'</input>'));
+			$("#divQuestion").append($('<input type="radio" value="choice1" name="choice">'+list[counter].choiceOne+'</input>'));
 			$("#divQuestion").append("<br>");
-			$("#divQuestion").append($('<input type="radio" name="choice">'+list[0].choiceTwo+'</input>'));
+			$("#divQuestion").append($('<input type="radio" value="choice2"  name="choice">'+list[counter].choiceTwo+'</input>'));
 			$("#divQuestion").append("<br>");
-			$("#divQuestion").append($('<input type="radio" name="choice">'+list[0].choiceThree+'</input>'));
+			$("#divQuestion").append($('<input type="radio" value="choice3" name="choice">'+list[counter].choiceThree+'</input>'));
 			$("#divQuestion").append("<br>");
-			$("#divQuestion").append($('<input type="radio" name="choice">'+list[0].choiceFour+'</input>'));
+			$("#divQuestion").append($('<input type="radio" value="choice4" name="choice">'+list[counter].choiceFour+'</input>'));
 			$("#divQuestion").append("<br>");
 			$("#divQuestion").append("<hr>");
 	    	
+
 	    	
-	    	var counter = 0;
+	    	
 			var maxQuestions=1;
+			var choiceSelected;
 			$("#btnClickNext").on("click","",function(evt){
 				evt.preventDefault();
-				counter++;
+				 choiceSelected = $("input[type='radio'][name='choice']:checked").val();
+				 alert("ChoiceSelected "+choiceSelected);
 				if(counter>maxQuestions) return;
+				
+				/////////////// Add data to TableTestDetails///////////////////
+
+				var testDetailsObj={
+						questionId:list[counter].questionId,
+						testId:testId,
+						userResponse:choiceSelected
+				}
+			
+				alert("questionId"+list[counter].questionId);
+				alert("testId"+testId);
+				alert("UR"+choiceSelected);
+				counter++;
+		$.ajax({
+					url:'addDataToTestDetailsTable.lti',
+		    		method:'POST',
+					data:JSON.stringify(testDetailsObj),
+					contentType:'application/json',
+					
+				})
+				
+					/////////////// Add data to TableTestDetails///////////////////
+
+				
 				$("#divQuestion").empty();
 				$("#divQuestion").append(list[counter].question);
 				$("#divQuestion").append("<br>");
-				$("#divQuestion").append($('<input type="radio" name="choice">'+list[counter].choiceOne+'</input>'));
+				$("#divQuestion").append($('<input type="radio" value="choice1" "name="choice">'+list[counter].choiceOne+'</input>'));
 				$("#divQuestion").append("<br>");
-				$("#divQuestion").append($('<input type="radio" name="choice">'+list[counter].choiceTwo+'</input>'));
+				$("#divQuestion").append($('<input type="radio" value="choice2" name="choice">'+list[counter].choiceTwo+'</input>'));
 				$("#divQuestion").append("<br>");
-				$("#divQuestion").append($('<input type="radio" name="choice">'+list[counter].choiceThree+'</input>'));
+				$("#divQuestion").append($('<input type="radio" value="choice3" name="choice">'+list[counter].choiceThree+'</input>'));
 				$("#divQuestion").append("<br>");
-				$("#divQuestion").append($('<input type="radio" name="choice">'+list[counter].choiceFour+'</input>'));
+				$("#divQuestion").append($('<input type="radio"  value="choice4" name="choice">'+list[counter].choiceFour+'</input>'));
 				$("#divQuestion").append("<br>");
 				$("#divQuestion").append("<hr>");
+			
+			
 	    	
 	    })
 		
