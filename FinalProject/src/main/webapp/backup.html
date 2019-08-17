@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>LOG IN</title>
+<link rel="stylesheet" href="AdminLogin.css">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+<script>
+   $(function(){
+	   $("#loginForm").submit(function(evt){
+		   evt.preventDefault();
+		  
+				  var  studentEmail =$("#email").val();
+				   var studentPwd =$("#pwd").val();
+	
+		   alert(studentEmail);
+		   alert(studentPwd);
+		   
+		   $.ajax({
+				url:'validateAdminCredentials.lti?email='+studentEmail+'&pwd='+studentPwd,
+				method:'GET',
+				contentType : 'application/json',
+				success : function(response){
+			   alert(JSON.stringify(response));
+					if(response===undefined)
+						{
+						 if(typeof (Storage)!=="undefined"){
+							 
+				                sessionStorage.id = subjectObj.subjectId;
+				                  alert(sessionStorage.id);
+				       window.location.href= 'AdminLogin.html';
+				                 }
+							
+						}
+					else{
+						window.location.href = "AddRemoveQuestion.html";
+						
+						$(".all").html("Invalid Credentials");
+					}
+				}
+		   })
+	   })
+   })
+   </script>
+<body>
+<ul class="sidenav">
+  <li><a href="Home.html"><img src='homeicon.png'style="width:25px">Home</a></li>
+  <li><a href="AdminLogin.html"><img src='adminicon.png'style="width:25px">Admin Login</a></li>
+  <li><a href="StudentRegister.html"><img src='studentregistericon.png'style="width:25px">Student Register</a></li>
+  <li><a href="StudentLogin.html"><img src='signinicon.png'style="width:25px">Student Login</a></li>
+   <li><a href="Reports.html"><img src='aboutus.png'style="width:25px">About Us</a></li>
+</ul>
+<form id="loginForm">
+
+   <div class="all">
+  <div class="container">
+    <h1>Login</h1>
+   
+    <hr>
+    
+    
+	
+	<label for="email"><b>Email:</b></label>
+    <input type="email" placeholder="Enter Email" name="email" required id="email"></br>
+
+    
+	<label for="password"><b>Password:</b></label>
+    <input type="password" placeholder="Enter Password"     minlength="8" name="password" id="pwd" required></br>
+   
+    <button type="submit" class="loginbutton">Login</button>
+  </div>
+  
+  </div>
+
+  
+</form>
+</body>
+</html>
