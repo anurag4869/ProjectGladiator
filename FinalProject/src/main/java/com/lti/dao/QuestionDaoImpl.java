@@ -1,5 +1,6 @@
 package com.lti.dao;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -43,14 +44,26 @@ public class QuestionDaoImpl {
 	
 
 	
-	public List<TableQuestion> fetchQuestionsById(int pk) {
-		String q="select obj from TableQuestion obj where obj.subject.subjectId=:sid";
+	public List<Integer> fetchQuestionsById(int pk) {
+		String q="select obj.questionId from TableQuestion obj where obj.subject.subjectId=:sid";
 		Query query=entityManager.createQuery(q);
 		query.setParameter("sid", pk);
-		List<TableQuestion>list=query.getResultList();
+		List<Integer> listOfQuestionIds=query.getResultList();
+		Collections.shuffle(listOfQuestionIds);
+		/*
+		System.out.println("Before Shuffling");
+		for(Integer i:listOfQuestionIds) {
+			System.out.println("questionId "+i);
+		}
+		
+		System.out.println("After Shuffling");
+		
+		for(Integer i:listOfQuestionIds) {
+			System.out.println("questionId "+i);
+		}*/
 		
 	//	return entityManager.createQuery(q).getResultList();
-		return list;
+		return listOfQuestionIds.subList(0, 5);
 		
 	}
 

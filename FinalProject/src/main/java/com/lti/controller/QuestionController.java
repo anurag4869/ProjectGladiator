@@ -62,5 +62,11 @@ public class QuestionController {
 
 }
 	
+	@PostMapping("/getSingleQuestion.lti")
+	public TableQuestion getSingleQuestion(@RequestBody TableQuestion question) {
+		question=questionService.getASingleQuestionForStudent(question.getQuestionId());
+		return question;
+	}
+	
 	
 }

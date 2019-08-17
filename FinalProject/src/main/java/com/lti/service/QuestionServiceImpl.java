@@ -52,12 +52,16 @@ public class QuestionServiceImpl {
 		questionDao.deleteQuestion(questionId);
 	}
 	
-	public List<TableQuestion> getQuestionForStudent(int subjectId){
-		List<TableQuestion> list=questionDao.fetchQuestionsById(subjectId);
-		return list;
+	public List<Integer> getQuestionForStudent(int subjectId){
+		List<Integer> listOfQuestionIds=questionDao.fetchQuestionsById(subjectId);
+		return listOfQuestionIds;
 		
 	}
 	
+	public TableQuestion getASingleQuestionForStudent(int  questionId) {
+	return dao.fetchById(TableQuestion.class, questionId);
+		
+	}
 	
 	
 }

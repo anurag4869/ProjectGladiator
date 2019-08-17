@@ -23,10 +23,10 @@ public class DisplayQuestionForStudentController {
 		return question;
 	}*/
 	
-	@PostMapping("/displayQuestionsUsingDto.lti")
-	public List<TableQuestion> displayQuestionsList(@RequestBody QuestionsDTO dto){
-		List<TableQuestion> list=questionService.getQuestionForStudent(dto.getSubjectId());	
-		return list;
+	@PostMapping("/displayQuestionIdsUsingDto.lti")
+	public List<Integer> displayQuestionsList(@RequestBody QuestionsDTO dto){
+		List<Integer> listOfQuestionIds=questionService.getQuestionForStudent(dto.getSubjectId());	
+		return listOfQuestionIds;
 	}
 
 }

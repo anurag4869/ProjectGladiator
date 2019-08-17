@@ -17,7 +17,9 @@ public class TestDetailsController {
 	public void addToTableTestDetails(@RequestBody AddUserResponsesDTO testDetailsData) {
 		testDetailsService.addToTableDetailsService(testDetailsData.getTestId(),
 				testDetailsData.getQuestionId(),testDetailsData.getUserResponse());
-		
+		/*if(testDetailsData.isFinish()) {
+			
+		}*/
 	}
 
 }
