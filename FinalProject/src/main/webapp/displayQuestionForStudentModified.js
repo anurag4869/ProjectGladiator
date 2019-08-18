@@ -5,13 +5,13 @@ $(function(){
 	var countForQuestionList=0;
 	var count=1;
 	var selected;
-	var maxQuestions=5;
+	var maxQuestions=8;
 	$("#allSubjects").on("click",".approve-btn",function(evt){
 		evt.preventDefault();
 		// var btnText=$(this).text();
 		// alert(btnText);
 		subjectId = $(this).attr("id");
-		alert(subjectId);
+		//alert(subjectId);
 		// var sid = $("#1").val();
 					
 		var subjectObj={
@@ -91,21 +91,24 @@ $(function(){
 				 $("#divQuestion").append($('<input type="radio" value="CHOICE4" name="choice">'+response.choiceFour+'</input>'));
 				 $("#divQuestion").append("<br>");
 				 $("#divQuestion").append("<hr>");
-				 $("#btnClickNext").append('<input type="submit" value="Next" />')
+			
 			 }
 	})
 	}
     
 	$('#examForm').on("click", 'input[type="radio"]', function(){
 		 selected=$(this).val();
-		 alert(selected)
+		 //alert(selected)
 	 })
   
 	$("#btnClickStart").on("click","",function(evt){
 		evt.preventDefault();
+		
 		countForQuestionList = 0;
 		loadQuestion(countForQuestionList);
 		$(this).hide();
+		 $("#btnClickNext").append('<input type="submit" value="Next" />')
+		 
 	})
 	
 	
@@ -116,9 +119,14 @@ $(function(){
 				 questionId:listOfQuestionIds[countForQuestionList],
 				 testId:testId,
 				 userResponse:selected,
+				 finish:false
 		}
 		 if(countForQuestionList == (maxQuestions - 1))
+		 { 
 			 testDetailsObj.finish = true;
+			 alert("Submit Test");
+			
+		 }
 		 
 		 $.ajax({
 			 url:'addDataToTestDetailsTable.lti',
@@ -126,7 +134,12 @@ $(function(){
 			 data:JSON.stringify(testDetailsObj),
 			 contentType:'application/json',
 			 success:function(response){
-				 
+				 if($.trim(response)){
+					 //alert(JSON.stringify(response));
+					 sessionStorage.setItem("userResult",JSON.stringify(response));
+					 window.location.href="UserScore.html";
+				 }
+			
 			 }
 		 })
 		
@@ -136,31 +149,12 @@ $(function(){
 		else if(countForQuestionList == maxQuestions)
 			alert("last question submitted");
 		
-		loadQuestion(countForQuestionList);
+		loadQuestion(countForQuestionList); 
 		
-		
-		 
-		
-		alert("next");
+		//alert("next");
 	})
 	
 		
 		
-			
-	
-		 
-
-		
-				 
-				 
-
-					 
-
-					
-
-					 
-
-	
-	
 	})
 	

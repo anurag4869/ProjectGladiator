@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#displayScore {
+	margin: 0 auto;
+	margin-top: 10%;
+	width: 25%;
+	height: 75%;
+	font-size: 30px;
+	border-style: solid;
+	border-width:3px;
+	border-color: lightgrey;
+}
+
+#heading {
+	margin: 0 auto;
+	width: 25%;
+	height: 75%;
+	font-size: 30px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="displayQuestionForStudentModified.js"></script>
+<script>
+
+	$(function() {
+		var userResult=JSON.parse(sessionStorage.userResult);
+		$("#displayScore").append("User Result Id: "+userResult.userResultId+"<br>");
+		$("#displayScore").append("Test Status: "+userResult.resultStatus+"<br>");
+		$("#displayScore").append("Score: "+userResult.score+"<br>");
+		$("#displayScore").append("Level : "+userResult.questionLevel+"<br>");
+		
+		
+		if(userResult.resultStatus=="FAIL"){
+			$("#displayStatus").append("Failed"+"<br>");
+			$("#btnClickStart").append('<button type="submit">Proceed To Level 2</button>'+"<br>");
+			
+			
+		}
+		else{
+			$("#displayStatus").append("Passed"+"<br>");
+			
+			
+		}
+	
+	
+
+	})
+</script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body bgcolor="white">
+<div id="heading">Test Results</div>
+<div id="displayScore"></div>
+<div id="btnClickStart"></div>
+<div id="btnClickNext"></div>
+</body>
+</html>

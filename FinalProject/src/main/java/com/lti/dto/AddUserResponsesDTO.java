@@ -4,7 +4,14 @@ public class AddUserResponsesDTO {
 	private int testId;
 	private int questionId;
 	private String userResponse;
+	private boolean finish;
 	
+	public boolean isFinish() {
+		return finish;
+	}
+	public void setFinish(boolean finish) {
+		this.finish = finish;
+	}
 	public int getTestId() {
 		return testId;
 	}

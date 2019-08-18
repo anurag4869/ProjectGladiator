@@ -32,4 +32,48 @@ public class TableUserResult {
 	@OneToOne
 	@JoinColumn(name="TEST_ID") //fk
 	private TableTest testUserResult;
+
+	public int getUserResultId() {
+		return userResultId;
+	}
+
+	public void setUserResultId(int userResultId) {
+		this.userResultId = userResultId;
+	}
+
+	public String getResultStatus() {
+		return resultStatus;
+	}
+
+	public void setResultStatus(String resultStatus) {
+		this.resultStatus = resultStatus;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+	
+
+	public int getLevelPassed() {
+		return levelPassed;
+	}
+
+	public void setLevelPassed(int levelPassed) {
+		this.levelPassed = levelPassed;
+	}
+
+	public TableTest getTestUserResult() {
+		return testUserResult;
+	}
+
+	public void setTestUserResult(TableTest testUserResult) {
+		this.testUserResult = testUserResult;
+	}
+	
+	
 }

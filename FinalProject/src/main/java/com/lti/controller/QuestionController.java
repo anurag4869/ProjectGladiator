@@ -48,7 +48,9 @@ public class QuestionController {
 	
 	}
 	@GetMapping("/getAllQuestions.lti")
-	public List<TableQuestion> displayAllQuestion(@RequestParam ("subjectId") int subjectId){
+
+	public List<TableQuestion> displayAllQuestion(@RequestParam("subjectId")int subjectId){
+
 		List<TableQuestion>list=questionService.getAllQuestions(subjectId);
 		return list;
 	}

@@ -39,39 +39,31 @@ public class QuestionDaoImpl {
 
 	
 	public List<Integer> fetchQuestionsById(int pk) {
-		String q="select obj.questionId from TableQuestion obj where obj.subject.subjectId=:sid";
+		String q="select obj.questionId from TableQuestion obj where obj.subject.subjectId=:sid and obj.questionLevel=1 and obj.questionStatus=1";
 		Query query=entityManager.createQuery(q);
 		query.setParameter("sid", pk);
 		List<Integer> listOfQuestionIds=query.getResultList();
 		Collections.shuffle(listOfQuestionIds);
-		/*
-		System.out.println("Before Shuffling");
-		for(Integer i:listOfQuestionIds) {
-			System.out.println("questionId "+i);
-		}
 		
-		System.out.println("After Shuffling");
-		
-		for(Integer i:listOfQuestionIds) {
-			System.out.println("questionId "+i);
-		}*/
-		
-	//	return entityManager.createQuery(q).getResultList();
-		return listOfQuestionIds.subList(0, 5);
-		
+		return listOfQuestionIds.subList(0, 8);
 	}
+
 	
+
+
 	public List<TableQuestion> fetchAll(int subjectId) {
-		String query="select question from TableQuestion question where question.questionStatus=:status and question.subject.subjectId=:subjectId";
-		Query q=entityManager.createQuery(query);
-		q.setParameter("subjectId", subjectId);
-		q.setParameter("status", 1);
-		List<TableQuestion> list=q.getResultList();
-		System.out.println("dao");
-		for(TableQuestion q1: list)
-			System.out.println(q1.getQuestion());
-		return list;
-	}
+		 String query="select question from TableQuestion question where question.questionStatus=:status and question.subject.subjectId=:subjectId";
+		 Query q=entityManager.createQuery(query);
+		 q.setParameter("subjectId", subjectId);
+		 q.setParameter("status", 1);
+		 List<TableQuestion> list=q.getResultList();
+		 System.out.println("dao");
+		 for(TableQuestion q1: list)
+		  System.out.println(q1.getQuestion());
+		 return list;
+		}
+
+
 
 
 }
