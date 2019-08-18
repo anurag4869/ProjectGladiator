@@ -49,7 +49,7 @@ $(function(){
 	}
 	function addToTestTableFunction(){
 		var tableTestObj={
-    			studentId:1,
+    			studentId:sessionStorage.sid,
     			subjectId:subjectId
     	}
 		 $.ajax({
@@ -79,6 +79,7 @@ $(function(){
 			 data:JSON.stringify(questionIds),
 			 contentType:'application/json',
 			 success:function(response){
+				 if(countForQuestionList != (maxQuestions - 1)) {
 				 $("#divQuestion").empty();
 				 $("#divQuestion").append(response.question);
 				 $("#divQuestion").append("<br>");
@@ -91,7 +92,7 @@ $(function(){
 				 $("#divQuestion").append($('<input type="radio" value="CHOICE4" name="choice">'+response.choiceFour+'</input>'));
 				 $("#divQuestion").append("<br>");
 				 $("#divQuestion").append("<hr>");
-			
+			 }
 			 }
 	})
 	}
@@ -134,7 +135,7 @@ $(function(){
 			 data:JSON.stringify(testDetailsObj),
 			 contentType:'application/json',
 			 success:function(response){
-				 if($.trim(response)){
+				 if($.trim(response) ){
 					 //alert(JSON.stringify(response));
 					 sessionStorage.setItem("userResult",JSON.stringify(response));
 					 window.location.href="UserScore.html";
@@ -144,14 +145,15 @@ $(function(){
 		 })
 		
 		countForQuestionList ++;
-		if(countForQuestionList == (maxQuestions - 1))
-			$(this).text("Finish Exam");
+		 if(countForQuestionList == (maxQuestions - 1)) {
+			 $(this).text("Finish Exam");
+		 }
 		else if(countForQuestionList == maxQuestions)
 			alert("last question submitted");
 		
 		loadQuestion(countForQuestionList); 
 		
-		//alert("next");
+		
 	})
 	
 		

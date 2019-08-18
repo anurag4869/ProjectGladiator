@@ -26,7 +26,19 @@ tr:hover {background-color: lightgrey;}
 
 <script>
 $(function(){
-	var studentId=1;
+	if(sessionStorage.sid==undefined)
+	 {
+		
+	 window.location.href = "StudentLogin.html";
+	 }
+
+$("#logout").click(function(evt){
+ evt.preventDefault();
+sessionStorage.clear();
+
+window.location.href = "StudentLogin.html" 
+}) 
+	var studentId=sessionStorage.sid;
 	$("#viewReports").append("<button type='submit' id='btnViewReports'>View Reports</button>");
 	$("#viewReports").on("click","",function(evt){
 		evt.preventDefault();
@@ -71,5 +83,6 @@ $(function(){
         <th>Test Status</th>
     </tr>
 </table>
+<a href="StudentLogin.html" id="logout"></a>
 </body>
 </html>

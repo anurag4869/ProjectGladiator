@@ -28,7 +28,7 @@ public class TestDetailsService {
 		testDetails.setTestDetailsTest(test);
 		testDetails.setUserResponse(userResponse);
 		String responseStatus=testDetailsDao.returnResponseStatus(questionId);
-		if(responseStatus.equals(userResponse)) {responseStatus="CORRECT";}
+		if(responseStatus.equalsIgnoreCase(userResponse)) {responseStatus="CORRECT";}
 		else {responseStatus="INCORRECT";}
 		testDetails.setResponseStatus(responseStatus);
 		

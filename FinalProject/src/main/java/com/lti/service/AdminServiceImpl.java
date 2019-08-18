@@ -15,7 +15,7 @@ import com.lti.entity.TableAdmin;
 import com.lti.entity.TableStudent;
 
 @Service
-public class AdminServiceImpl {
+public class AdminServiceImpl implements AdminService{
 	@Autowired
 	private GenericDaoImpl dao;
 	

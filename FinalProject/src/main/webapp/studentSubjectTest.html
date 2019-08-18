@@ -6,6 +6,18 @@
 <script src="displayQuestionForStudentModified.js"></script>
 <script>
 $(function(){
+	if(sessionStorage.sid==undefined)
+	 {
+		
+	 window.location.href = "StudentLogin.html";
+	 }
+
+$("#logout").click(function(evt){
+ evt.preventDefault();
+sessionStorage.clear();
+
+window.location.href = "StudentLogin.html" 
+}) 
 	$.ajax({
 		url:'getAllSubjects.lti',
 		 method:'POST',

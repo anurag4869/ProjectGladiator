@@ -7,6 +7,18 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script>
 $(function(){
+	if(sessionStorage.sid==undefined)
+	 {
+		
+	 window.location.href = "StudentLogin.html";
+	 }
+
+$("#logout").click(function(evt){
+  evt.preventDefault();
+sessionStorage.clear();
+
+window.location.href = "StudentLogin.html" 
+}) 
 	$(".container").append("WELCOME AGAIN "+sessionStorage.name+"!!!!").css({"color":"#CC0033","font-size": "200%","align":"center"});
 })
 </script>
@@ -24,8 +36,8 @@ $(function(){
 
 <div class="container">
 	
-  <button type="submit" class="taketest"><a style="text-decoration:none"  href="">Take Test</a></button>
-  <button type="submit" class="viewreports"><a style="text-decoration:none"  href="viewreports.html">View Reports</a></button>
+  <button type="submit" class="taketest"><a style="text-decoration:none"  href="studentSubjectTest.html">Take Test</a></button>
+  <button type="submit" class="viewreports"><a style="text-decoration:none"  href="studentReports.html">View Reports</a></button>
   
   
   </div>

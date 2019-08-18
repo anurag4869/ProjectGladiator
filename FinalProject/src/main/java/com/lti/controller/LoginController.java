@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.dto.Status;
-import com.lti.service.AdminServiceImpl;
+import com.lti.service.AdminService;
 import com.lti.service.StudentService;
-import com.lti.service.StudentServiceImpl;
 
 @RestController
 public class LoginController {
@@ -17,7 +16,7 @@ public class LoginController {
 	private StudentService studentService;
 	
 	@Autowired
-	private AdminServiceImpl adminService;
+	private AdminService adminService;
 
 	
 	@GetMapping("/validateStudentCredentials.lti")

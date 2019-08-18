@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.entity.TableStudent;
-import com.lti.service.AdminServiceImpl;
+import com.lti.service.AdminService;
 
 @RestController
 public class AdminSearchController {
 
 	@Autowired
-	private AdminServiceImpl adminService;
+	private AdminService adminService;
 	
 	@GetMapping("/searchStudents.lti")
 	public List<TableStudent> searchStudents(@RequestParam("subjectName") String subjectName,@RequestParam("studentState") String studentState, @RequestParam("studentCity") String studentCity

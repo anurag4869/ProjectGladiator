@@ -45,7 +45,7 @@ public class QuestionDaoImpl {
 		List<Integer> listOfQuestionIds=query.getResultList();
 		Collections.shuffle(listOfQuestionIds);
 		
-		return listOfQuestionIds.subList(0, 8);
+		return listOfQuestionIds.subList(0, 7);
 	}
 
 	
