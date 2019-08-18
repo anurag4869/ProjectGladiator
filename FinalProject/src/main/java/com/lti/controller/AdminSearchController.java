@@ -18,8 +18,8 @@ public class AdminSearchController {
 	
 	@GetMapping("/searchStudents.lti")
 	public List<TableStudent> searchStudents(@RequestParam("subjectName") String subjectName,@RequestParam("studentState") String studentState, @RequestParam("studentCity") String studentCity
-			,@RequestParam("questionLevel") int questionLevel, @RequestParam("score") int score) {
-		List<TableStudent> listOfStudents=adminService.searchStudents(subjectName, studentState, studentCity, questionLevel, score);
+			,@RequestParam("levelPassed") int levelPassed, @RequestParam("score") int score) {
+		List<TableStudent> listOfStudents=adminService.searchStudents(subjectName, studentState, studentCity, levelPassed, score);
 		return listOfStudents;
 	}
 	

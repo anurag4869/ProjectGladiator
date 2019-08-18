@@ -24,10 +24,7 @@ public class QuestionDaoImpl {
 	@Autowired
 	GenericDaoImpl dao;
 	
-	public void addQuestionForExistingSubject( TableQuestion question) {
-			dao.save(question);
-		
-	}
+	
 	
 
 	public void deleteQuestion(int questionId) {
@@ -35,9 +32,6 @@ public class QuestionDaoImpl {
 		TableQuestion question=dao.fetchById(TableQuestion.class, questionId);
 		question.setQuestionStatus(0);
 		dao.save(question);
-		/*String query="Update table TableQuestion set questionStatus=0 where questionId=:questionId";
-		Query q = entityManager.createQuery(query);
-		q.setParameter("questionId", questionId);*/
 		
 	}
 	
@@ -65,6 +59,18 @@ public class QuestionDaoImpl {
 	//	return entityManager.createQuery(q).getResultList();
 		return listOfQuestionIds.subList(0, 5);
 		
+	}
+	
+	public List<TableQuestion> fetchAll(int subjectId) {
+		String query="select question from TableQuestion question where question.questionStatus=:status and question.subject.subjectId=:subjectId";
+		Query q=entityManager.createQuery(query);
+		q.setParameter("subjectId", subjectId);
+		q.setParameter("status", 1);
+		List<TableQuestion> list=q.getResultList();
+		System.out.println("dao");
+		for(TableQuestion q1: list)
+			System.out.println(q1.getQuestion());
+		return list;
 	}
 
 

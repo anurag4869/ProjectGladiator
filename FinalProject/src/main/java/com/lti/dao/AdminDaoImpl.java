@@ -36,24 +36,12 @@ public class AdminDaoImpl {
 		
 	}
 	
-	public List<TableStudent> searchStudents(String subjectName,String studentState,String studentCity,int questionLevel, int score){
+	public List<TableStudent> searchStudents(String subjectName,String studentState,String studentCity,int levelPassed, int score){
 	
-		//String query="select s.StudentName from TableStudent s where s.STUDENT_ID in( select stud.STUDENT_ID from Tabl_STUDENT stud, TABLE_TEST t, TABLE_SUBJECT sub, TABLE_USER_RESULT ur, TABLE_CURR_TEST ct where\r\n" + 
-			//	"sub.SUBJECT_NAME='JAVA' and stud.STUDENT_CITY='THANE' and stud.STUDENT_STATE='MAHARASHTRA' and ur.QUESTION_LEVEL=1 and \r\n" + 
-				//"ur.SCORE=1) ;\r\n" + 
-				//" ";
-		
-		
-		System.out.println("daooooooooo");
-		
-		System.out.println(subjectName);
-		System.out.println(studentState);
-		System.out.println(studentCity);
-		System.out.println(questionLevel);
-		System.out.println(score);
+	
 		
 		String query=" select stud from TableStudent as stud join stud.testStudents as ts join ts.testSubject as sub join ts.testResult as result where "+
-		"sub.subjectName = :subjectName and stud.studentCity = :studentCity and stud.studentState = :studentState and result.questionLevel = :questionLevel " +
+		"sub.subjectName = :subjectName and stud.studentCity = :studentCity and stud.studentState = :studentState and result.levelPassed = :levelPassed " +
 				"and result.score = :score";
 		
 	    Query q = entityManager.createQuery(query);
@@ -63,12 +51,11 @@ public class AdminDaoImpl {
 		
 		
 		
-		q.setParameter("questionLevel", questionLevel);
+		q.setParameter("levelPassed", levelPassed);
 		q.setParameter("score", score);
-		System.out.println("hey");	
 	
 		List<TableStudent> list = q.getResultList();
-		System.out.println("=======>" + list.size());
+		
 		return list;
 		
 		

@@ -4,6 +4,32 @@
 <meta charset="ISO-8859-1">
 <title>Search Student</title>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+<style>
+#applist {
+  font-family: "Georgia", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#applist td, #applist th {
+  border: 1px solid #ddd;
+  padding: 6px;
+}
+
+#applist tr:nth-child(even){background-color: #f2f2f2;}
+
+#applist tr:hover {background-color: #ddd;}
+
+#applist th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+</style>
 <script>
 $(function(){
 	   $("#search").submit(function(evt){
@@ -12,22 +38,25 @@ $(function(){
 				  var  subjectName =$("#subject").val();
 				   var studentState =$("#state").val();
 				   var studentCity=$("#city").val();
-				   var questionLevel=$("#level").val();
+				   var levelPassed=$("#level").val();
 				   var score=$("#score").val();
 				   var subjectNameEncoded=encodeURIComponent(subjectName);
 	
-		   alert(subjectName);
-		   alert(studentState);
-		   //var url='searchStudents.lti?subjectName='+subjectName+'&studentState='+studentState+'&studentCity='+studentCity+'&questionLevel='+questionLevel+'&score='+score;
-		   //var encodedUri=encodeURI(url)
 		   
 		   $.ajax({
-				url:'searchStudents.lti?subjectName='+subjectNameEncoded+'&studentState='+studentState+'&studentCity='+studentCity+'&questionLevel='+questionLevel+'&score='+score,
+				url:'searchStudents.lti?subjectName='+subjectNameEncoded+'&studentState='+studentState+'&studentCity='+studentCity+'&levelPassed='+levelPassed+'&score='+score,
 				method:'GET',
 				contentType : 'application/json',
 				success : function(response){
-			   alert(JSON.stringify(response));
-			   $(".divId").append(response);
+			  // $("#divId").append(JSON.stringify(response[0].studentName));
+			   $.each(response,function(index,data)
+		                {
+		                 $("<tr>").append(
+		                 $('<td>').text(data.studentId),
+		                 $('<td>').text(data.studentName),
+		                 $('<td>').text(data.studentEmail)).appendTo('#applist tbody');
+		               
+		                })
 				}
 		   })
 	   })
@@ -39,6 +68,7 @@ $(function(){
 <select id= "subject">
   <option value="Java">Java</option>
   <option value="C#">C#</option>
+  <option value="PHP">PHP</option>
 </select>
 
 <select id="state">
@@ -67,7 +97,27 @@ $(function(){
   <option value="3">3</option>
 </select>	
   <button type="submit" class="searchbtn">Search</button>
+
+  
+  <div id=divId>
+<div style="overflow-x:auto;">
+<table id = "applist" >
+<thead>
+<tr>
+<th>STUDENT ID</th>
+<th>STUDENT NAME</th>
+<th>STUDENT EMAIL</th>
+
+</tr>
+
+</thead>
+<tbody>
+
+</tbody>
+
+</table>
+</div>
+</div>
   </form>
-  <div class=divId></div>
 </body>
 </html>

@@ -24,6 +24,7 @@ public class QuestionServiceImpl {
 	
 	@Transactional
 	public int addQuestion(TableQuestion question) {
+		question.setQuestionStatus(1);
 		TableQuestion questionDetails=(TableQuestion)dao.save(question);
 		System.out.println("1. Service "+questionDetails.getQuestionId());
 		return questionDetails.getQuestionId();
@@ -41,8 +42,8 @@ public class QuestionServiceImpl {
 		dao.save(question);
 		}
 	
-	public List<TableQuestion> getAllQuestions(){
-		List<TableQuestion>list=dao.fetchAll(TableQuestion.class);
+	public List<TableQuestion> getAllQuestions(int subjectId){
+		List<TableQuestion>list=questionDao.fetchAll(subjectId);
 		return list;
 	}
 	

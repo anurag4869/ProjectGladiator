@@ -14,25 +14,31 @@
 				  var  studentEmail =$("#email").val();
 				   var studentPwd =$("#pwd").val();
 	
-		   alert(studentEmail);
-		   alert(studentPwd);
 		   
 		   $.ajax({
 				url:'validateAdminCredentials.lti?email='+studentEmail+'&pwd='+studentPwd,
 				method:'GET',
 				contentType : 'application/json',
 				success : function(response){
-			   alert(JSON.stringify(response));
-					if(response=="True")
-						{
-						 window.location.href = "AddRemoveQuestion.html";
-						}
-					else{
-						
-						window.location.href = "AdminLogin.html";
-						$(".all").html("Invalid Credentials");
-					}
-				}
+			  
+			   if(response.message=="Valid"){
+				   
+			  
+			   if(typeof (Storage)!=="undefined"){
+					 
+	                sessionStorage.id = response.generatedId;
+	                  
+	       window.location.href= 'AddRemoveQuestion.html';
+	                 }
+			 	} 
+		else{
+			$("input[type=email]").val("");
+			$("input[type=password]").val("");
+			$("#divId").append("Invalid Credentials").css({"color":"red","font-weight":"bold"});
+			//window.location.href = "AdminLogin.html";
+			
+			}
+			}
 		   })
 	   })
    })
@@ -49,7 +55,7 @@
 
    <div class="all">
   <div class="container">
-    <h1>Login</h1>
+    <h1>Admin Login</h1>
    
     <hr>
     
@@ -62,7 +68,8 @@
 	<label for="password"><b>Password:</b></label>
     <input type="password" placeholder="Enter Password"     minlength="8" name="password" id="pwd" required></br>
    
-    <button type="submit" class="loginbutton">Login</button>
+    <button type="submit" class="Admin_Loginbutton">Login</button>
+    <div id = "divId"></div>
   </div>
   
   </div>

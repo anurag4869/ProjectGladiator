@@ -25,8 +25,8 @@ public class TableUserResult {
 	@Column(name="SCORE")
 	private int score;
 	
-	@Column(name="QUESTION_LEVEL")
-	private int questionLevel;
+	@Column(name="LEVEL_PASSED")
+	private int levelPassed;
 	
 	@JsonIgnore
 	@OneToOne

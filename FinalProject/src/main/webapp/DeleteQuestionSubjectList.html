@@ -3,21 +3,9 @@
 <head>
 <title>ALL SUBJECTS</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="addQuestionForAdmin2.js"></script>
 <script>
 $(function(){
-	if(sessionStorage.id==undefined)
-	 {
-		
-	 window.location.href = "AdminLogin.html";
-	 }
-
-$("#logout").click(function(evt){
-   evt.preventDefault();
- sessionStorage.clear();
-
- window.location.href = "AdminLogin.html" 
-}) 
+	
 	$.ajax({
 		url:'getAllSubjects.lti',
 		 method:'POST',
@@ -50,7 +38,7 @@ $("#logout").click(function(evt){
 			
 					sessionStorage.setItem("subjectId",idOfSubject);
 			$("#allSubjects").hide();
-			window.location.href= "AddQuestion.html";
+			window.location.href= "DeleteQuestion.html";
 })
 })
 </script>
@@ -63,4 +51,5 @@ $("#logout").click(function(evt){
 <div id="btnClickStart"></div>
 <div id="btnClickNext"></div>
 </body>
+</html>>
 </html>

@@ -4,15 +4,85 @@
 <meta charset="ISO-8859-1">
 <title>Add Questions</title>
  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
- <script src="addQuestionForAdmin2.js"></script>
+<link rel="stylesheet" href="Home.css">
 <link rel="stylesheet" href="AddQuestion.css">
+<script>
+$(function()
+{
+	if(sessionStorage.id==undefined)
+	 {
+		
+	 window.location.href = "AdminLogin.html";
+	 }
+	$("#logout").click(function(evt){
+	    evt.preventDefault();
+	  sessionStorage.clear();
+	  alert("logout");
+	  window.location.href = "AdminLogin.html" 
+	}) 
+var idOfSubject=sessionStorage.subjectId;
 
+$("#addQuestionForm").submit(function (evt) {
+    evt.preventDefault();
+    var questionObj = {
+            question: $("#question").val(),
+            choiceOne: $("#choice1").val(),
+            choiceTwo: $("#choice2").val(),
+            choiceThree: $("#choice3").val(),
+            choiceFour: $("#choice4").val(),
+            questionLevel: $("#level").val(),
+            correctAns: $("#correctAnswer").val()    
+        }
+    
+    var subjectObj={
+    		subjectId:idOfSubject
+    }
+
+          $.ajax({
+               url:'addQuestion.lti',
+               method:'POST',
+               data: JSON.stringify(questionObj),
+               contentType : 'application/json',
+               success : function(response){
+            	   
+            	   
+            	   $.ajax({
+            		   url:'addQuestionForSubject.lti',
+            		   method:'POST',
+            		   data:JSON.stringify(subjectObj),
+            		   contentType : 'application/json',
+            		   success : function(response){
+            			 $("#divId").html("Question Added").css({"color":"red","font-weight":"bold"});
+            			 $("input[type=text]").val("");
+            			 $("input[type=number]").val("");
+            			 $("#divId").delay(2000).fadeOut();
+            		   }
+             })
+             
+               }
+          })
+    })
+})
+</script>
 </head>
 <body>
 
+<ul class="sidenav">
+  <li><a href="Home.html"><img src='homeicon.png'style="width:25px">Home</a></li>
+  <li><a href="AdminLogin.html" id="logout"><img src='adminicon.png'style="width:25px">Sign Out</a></li>
+  
+</ul>
+
+ <div align="right" class="side">
+ 
+	 <a href="AdminSubject.html">Change Subject</a><br>
+	 <a href="DeleteQuestionSubjectList.html">Delete Question</a>
+	
+	 </div>
+	 <div class="container">
 <form id ="addQuestionForm">
 
-  <div class="container">
+  <div>
     <h3>Add Question</h3>
 	
    
@@ -25,7 +95,7 @@
     <input type="text" placeholder="Enter Choice 1" name="choice1" required id="choice1"></br>
 
     <label for="choice2"><b>choice 2:</b></label>
-    <input type="text" placeholder="Enter Choice 2" name="choice2"  id="choice2"></br>
+    <input type="text" placeholder="Enter Choice 2" name="choice2"  id="choice2" required></br>
 	
 	<label for="choice3"><b>choice 3:</b></label>
     <input type="text" placeholder="Enter Choice 3" name="choice3" required id="choice3"></br>
@@ -34,7 +104,7 @@
     <input type="text" placeholder="Enter Choice 4" name="choice4"  id="choice4" required>
 	
 	<label for="level"><b>Level:</b></label>
-	<input type="number" name="level"  id="level">
+	<input type="number" name="level"  id="level"><br>
 	
 	 
 	 <label for="correctanswer"><b>Correct Answer:</b></label>
@@ -47,7 +117,10 @@
 	
 		  
 	   <button type="submit" class="donebutton"  id="btn">Done</button>
-	 </hr> </form>
-	 
+	 </hr>
+	 <div id="divId"></div>
+	 </div>
+	  </form>
+	
 </body>
 </html>

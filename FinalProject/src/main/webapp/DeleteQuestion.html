@@ -4,44 +4,53 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+ <link rel="stylesheet" href="Home.css">
  <script>
  $(function(){
-	 /*$("#allQuestionDetails").submit(function(evt){
-		 evt.preventDefault();*/
-		 
+	 if(sessionStorage.id==undefined)
+	 {
+		
+	 window.location.href = "AdminLogin.html";
+	 }
+	$("#logout").click(function(evt){
+	    evt.preventDefault();
+	  sessionStorage.clear();
+	 
+	  window.location.href = "AdminLogin.html" 
+	}) 
+	 var subjectId=sessionStorage.subjectId;
 		 $.ajax({
-			 url:'getAllQuestions.lti',
-			 method:'POST',
+			 
+			 url:'getAllQuestions.lti?subjectId='+subjectId,
+			 method:'GET',
 			 dataType:'JSON',
 			contentType:'application/json',
 			success:function(response){
-				var questionSelect =$("<select/>");
+			
+				var questionSelect =$("<select/>").css({"color": "black","padding": "15px 32px","margin-left":"300px"});
 				questionSelect.attr("id","questionSelect");
 				$.each(response, function(index,question){
-				//alert(JSON.stringify(emp));
+			
 					var questionOption = $("<option/>") .attr("value",question.questionId).text(question.question);
 					questionSelect.append(questionOption);	
-				
-				/*for(i=0; i<response.length; i++){
-				$(".result").append(response[i].question);*/
 			
 				})
 				$("#allQuestionDetails").append(questionSelect);
 				}
 		 })
 		 
-		 var btn = $("<button/>") .attr("type","submit") .text("Delete");
+		 var btn = $("<button/>") .attr("type","submit") .text("Delete").css({"background-color":"#4CAF50","color": "white","padding": "15px 32px","margin-left":"600px","margin-bottom":"10px","margin-top":"10px"});
 				$("#allQuestionDetails").append(btn);
 				$("#allQuestionDetails").submit(function(evt) {
 					evt.preventDefault();
 					var selectedQuestionId = $("#questionSelect").val();
 					
-					alert(selectedQuestionId);
 					$.ajax({
 						url:'deleteQuestion.lti?questionId='+selectedQuestionId,
 						method : 'GET',
 						success : function(response){
-							alert(JSON.stringify(response));
+							$("#divId").html("Question Deleted").css({"color":"red","font-weight":"bold","padding": "15px 32px","margin-left":"300px"});
+						$("#divId").delay(2000).fadeOut();
 						}
 						})
 		 
@@ -55,9 +64,16 @@
  </script>
 </head>
 <body>
+<ul class="sidenav">
+  <li><a href="Home.html"><img src='homeicon.png'style="width:25px">Home</a></li>
+  <li><a href="AdminLogin.html" id="logout"><img src='adminicon.png'style="width:25px">Sign Out</a></li>
+  
+</ul>
 <form id="allQuestionDetails">
-
+<div id="divId">
+</div>
 <!--  <div id="myHeader" class="result"></div>-->
 </form>
+
 </body>
 </html>

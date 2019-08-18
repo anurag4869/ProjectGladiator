@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="StudentDashboard.css">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+$(function(){
+	$(".container").append("WELCOME AGAIN "+sessionStorage.name+"!!!!").css({"color":"#CC0033","font-size": "200%","align":"center"});
+})
+</script>
+</head>
+<body>
+<form>
+
+<ul class="sidenav">
+ 
+<img src="examcorner.jpg" class="img1" alt="examcorner" style="width:100%" height="100">
+  <li><a  href="Home2.html"><img src='homeicon.png'style="width:25px">Home</a></li>
+  <li><a href=""><img src='signouticon.jpg'style="width:25px">Sign Out</a></li>
+ 
+</ul>
+
+<div class="container">
+	
+  <button type="submit" class="taketest"><a style="text-decoration:none"  href="">Take Test</a></button>
+  <button type="submit" class="viewreports"><a style="text-decoration:none"  href="viewreports.html">View Reports</a></button>
+  
+  
+  </div>
+  
+  </form>
+</body>
+</html>

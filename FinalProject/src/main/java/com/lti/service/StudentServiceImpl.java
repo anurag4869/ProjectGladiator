@@ -8,10 +8,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.lti.dao.GenericDaoImpl;
 import com.lti.dao.StudentDaoImpl;
+import com.lti.dto.Status;
+import com.lti.entity.TableAdmin;
 import com.lti.entity.TableStudent;
 
 @Service
-public class StudentServiceImpl{
+public class StudentServiceImpl implements StudentService{
 	@Autowired
 	private GenericDaoImpl dao;
 	
@@ -24,17 +26,24 @@ public class StudentServiceImpl{
 	}
 	
 	@Transactional
-	public String validateStudentLoginCredentials(String email,String pwd) {
-	Object obj=studentDao.validateStudentCredentials(email, pwd);
-	String value="";
-	if(obj==null)
-	{
-		value="False";
-		return value;
+	public Status validateStudentLoginCredentials(String email,String pwd) {
+		TableStudent student	=studentDao.validateStudentCredentials(email, pwd);
+		Status status=new Status();
+		if(student==null)
+		{
+			 status.setGeneratedId(0);
+			 status.setMessage("Invalid");
+			 
+			
 
-	}
-	else
-		value="True";
-		return value;
+		}
+		else {
+			status.setGeneratedId(student.getStudentId());
+			status.setMessage("Valid");
+			status.setName(student.getStudentName());
+		
+		}
+			
+		return status;
 }
 }
