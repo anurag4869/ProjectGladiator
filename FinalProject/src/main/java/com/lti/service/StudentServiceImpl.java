@@ -6,19 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lti.dao.GenericDaoImpl;
-import com.lti.dao.StudentDaoImpl;
+import com.lti.dao.GenericDao;
+import com.lti.dao.StudentDao;
 import com.lti.dto.Status;
-import com.lti.entity.TableAdmin;
 import com.lti.entity.TableStudent;
 
 @Service
 public class StudentServiceImpl implements StudentService{
 	@Autowired
-	private GenericDaoImpl dao;
+	private GenericDao dao;
 	
 	@Autowired
-	private StudentDaoImpl studentDao;
+	private StudentDao studentDao;
 	
 	@Transactional
 	public void addStudent(TableStudent student) {

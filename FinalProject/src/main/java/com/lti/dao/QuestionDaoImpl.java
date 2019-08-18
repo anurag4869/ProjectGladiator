@@ -15,7 +15,7 @@ import com.lti.entity.TableQuestion;
 
 
 @Repository
-public class QuestionDaoImpl {
+public class QuestionDaoImpl implements QuestionDao {
 	static int questionNumber =0;
 
 	@PersistenceContext

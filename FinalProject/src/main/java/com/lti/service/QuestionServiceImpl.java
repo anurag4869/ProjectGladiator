@@ -1,26 +1,24 @@
 package com.lti.service;
 
-
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lti.dao.GenericDaoImpl;
-import com.lti.dao.QuestionDaoImpl;
+import com.lti.dao.GenericDao;
+import com.lti.dao.QuestionDao;
 import com.lti.entity.TableQuestion;
 import com.lti.entity.TableSubject;
 
 @Service
-public class QuestionServiceImpl {
+public class QuestionServiceImpl implements QuestionService {
 	
 	@Autowired
-	private GenericDaoImpl dao;
+	private GenericDao dao;
 	
 	@Autowired
-	private QuestionDaoImpl questionDao;
+	private QuestionDao questionDao;
 	
 	@Transactional
 	public int addQuestion(TableQuestion question) {

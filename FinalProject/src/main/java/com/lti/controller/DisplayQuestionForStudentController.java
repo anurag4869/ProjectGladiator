@@ -8,20 +8,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.dto.QuestionsDTO;
-import com.lti.entity.TableQuestion;
-import com.lti.entity.TableSubject;
-import com.lti.service.QuestionServiceImpl;
+import com.lti.service.QuestionService;
 
 @RestController
 public class DisplayQuestionForStudentController {
 	
-	@Autowired QuestionServiceImpl questionService;
-	
-	/*@PostMapping("/displayQuestions.lti")
-	public TableQuestion displayQusetions(@RequestBody TableSubject subject) {
-		TableQuestion question=questionService.getQuestionForStudent(subject.getSubjectId());
-		return question;
-	}*/
+	@Autowired QuestionService questionService;
 	
 	@PostMapping("/displayQuestionIdsUsingDto.lti")
 	public List<Integer> displayQuestionsList(@RequestBody QuestionsDTO dto){

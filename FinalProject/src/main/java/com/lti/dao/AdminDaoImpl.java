@@ -13,7 +13,7 @@ import com.lti.entity.TableAdmin;
 import com.lti.entity.TableStudent;
 
 @Repository
-public class AdminDaoImpl {
+public class AdminDaoImpl implements AdminDao {
 	@PersistenceContext
 	protected EntityManager entityManager;
 

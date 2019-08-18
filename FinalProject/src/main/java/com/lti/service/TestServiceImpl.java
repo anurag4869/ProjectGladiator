@@ -4,16 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lti.dao.GenericDaoImpl;
+import com.lti.dao.GenericDao;
 import com.lti.entity.TableStudent;
 import com.lti.entity.TableSubject;
 import com.lti.entity.TableTest;
 
 @Service
-public class TestServiceImpl {
+public class TestServiceImpl implements TestService {
 	
 	@Autowired
-	private GenericDaoImpl dao;
+	private GenericDao dao;
 	
 	@Transactional
 	public TableTest addToTestTable(int studentId,int subjectId) {

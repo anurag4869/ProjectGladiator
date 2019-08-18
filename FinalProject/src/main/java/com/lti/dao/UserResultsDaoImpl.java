@@ -8,10 +8,10 @@ import com.lti.entity.TableTest;
 import com.lti.entity.TableUserResult;
 
 @Repository
-public class UserResultsDaoImpl {
+public class UserResultsDaoImpl implements UserResultsDao{
 	
 	@Autowired
-	GenericDaoImpl dao;
+	GenericDao dao;
 	
 	@Transactional
 	public TableUserResult addToTableUserResults(int testId,Long count) {

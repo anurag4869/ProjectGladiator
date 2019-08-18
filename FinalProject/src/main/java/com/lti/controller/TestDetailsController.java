@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.dto.AddUserResponsesDTO;
 import com.lti.entity.TableUserResult;
-import com.lti.service.ScoreCalculatorServiceImpl;
+import com.lti.service.ScoreCalculatorService;
 import com.lti.service.TestDetailsService;
 
 @RestController
@@ -16,7 +16,7 @@ public class TestDetailsController {
 	TestDetailsService testDetailsService;
 	
 	@Autowired
-	ScoreCalculatorServiceImpl scoreCalculateService;
+	ScoreCalculatorService scoreCalculateService;
 	
 	@PostMapping("/addDataToTestDetailsTable.lti")
 	public TableUserResult addToTableTestDetails(@RequestBody AddUserResponsesDTO testDetailsData) {

@@ -8,15 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lti.dao.GenericDaoImpl;
-import com.lti.entity.TableQuestion;
+import com.lti.dao.GenericDao;
 import com.lti.entity.TableSubject;
 
 @Service
-public class SubjectServiceImpl {
+public class SubjectServiceImpl implements SubjectService {
 
 	@Autowired
-	private GenericDaoImpl dao;
+	private GenericDao dao;
 	
 	@Transactional
 	public void addSubject(TableSubject subject) {

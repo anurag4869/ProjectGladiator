@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.lti.entity.TableUserResult;
 
 @Repository
-public class ViewReportsDaoImpl {
+public class ViewReportsDaoImpl implements ViewReportsDao {
 	@PersistenceContext
 	protected EntityManager entityManager;
 	

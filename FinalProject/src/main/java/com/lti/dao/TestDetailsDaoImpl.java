@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.lti.entity.TableQuestion;
 
 @Repository
-public class TestDetailsDaoImpl {
+public class TestDetailsDaoImpl implements TestDetailsDao {
 
 	@PersistenceContext
 	protected EntityManager entityManager;

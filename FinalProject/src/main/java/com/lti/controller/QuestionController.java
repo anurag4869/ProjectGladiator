@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.lti.dto.Status;
 import com.lti.entity.TableQuestion;
 import com.lti.entity.TableSubject;
-import com.lti.service.QuestionServiceImpl;
+import com.lti.service.QuestionService;
 
 @RestController
 public class QuestionController {
 	
 	@Autowired
-	private QuestionServiceImpl questionService;
+	private QuestionService questionService;
 	
 	
 	int questionId;

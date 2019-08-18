@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.lti.entity.TableStudent; 
 
 @Repository
-public class StudentDaoImpl {
+public class StudentDaoImpl implements StudentDao{
 	
 	@PersistenceContext
 	protected EntityManager entityManager;

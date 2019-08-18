@@ -7,14 +7,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lti.entity.TableUserResult;
-import com.lti.service.ViewReportsStudentServiceImpl;
+import com.lti.service.ViewReportsStudentService;
 
 @RestController
 public class ViewReportsForStudentsController {
 	
 	@Autowired
-	ViewReportsStudentServiceImpl reportsService;
+	ViewReportsStudentService reportsService;
 
 	@GetMapping("/viewReports.lti")
 	public List<Object[]> viewReports(@RequestParam("studentId") int studentId) {

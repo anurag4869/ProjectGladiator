@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.dto.TestTableDataDTO;
 import com.lti.entity.TableTest;
-import com.lti.service.TestServiceImpl;
+import com.lti.service.TestService;
 
 @RestController
 public class TestController {
 	@Autowired
-	private TestServiceImpl testService;
+	private TestService testService;
 	
 	@PostMapping("/addDataToTestTable.lti")
 	public TableTest addDataToTestTable(@RequestBody TestTableDataDTO testData) {

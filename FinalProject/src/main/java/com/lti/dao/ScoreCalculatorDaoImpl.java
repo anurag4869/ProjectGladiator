@@ -10,12 +10,12 @@ import org.springframework.stereotype.Repository;
 import com.lti.entity.TableUserResult;
 
 @Repository
-public class ScoreCalculatorDaoImpl {
+public class ScoreCalculatorDaoImpl implements ScoreCalculatorDao {
 	@PersistenceContext
 	protected EntityManager entityManager;
 	
 	@Autowired
-	private UserResultsDaoImpl userResultDao;
+	private UserResultsDao userResultDao;
 	
 	public TableUserResult  calculateScoreForUser(int testId) {
 		String q="Select count(*) from TableTestDetails td where td.testDetailsTest.testId=:testId and td.responseStatus='CORRECT'";

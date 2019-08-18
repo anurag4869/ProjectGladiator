@@ -8,19 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lti.dao.AdminDaoImpl;
-import com.lti.dao.GenericDaoImpl;
+import com.lti.dao.AdminDao;
+import com.lti.dao.GenericDao;
 import com.lti.dto.Status;
 import com.lti.entity.TableAdmin;
 import com.lti.entity.TableStudent;
 
 @Service
 public class AdminServiceImpl implements AdminService{
-	@Autowired
-	private GenericDaoImpl dao;
 	
 	@Autowired
-	private AdminDaoImpl adminDao;
+	private GenericDao dao;
+	
+	@Autowired
+	private AdminDao adminDao;
 	
 	
 	@Transactional
