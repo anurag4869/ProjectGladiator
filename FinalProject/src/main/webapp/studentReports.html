@@ -1,7 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+#recordsTable {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 60%;
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+}
+ td {
+  padding: 8px;
+  text-align: center;
+}
+th{
+background-color: lightgreen;
+ padding: 8px;
+}
 
+tr:hover {background-color: lightgrey;}
+
+</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <script>
@@ -17,14 +37,19 @@ $(function(){
 			contentType : 'application/json',
 			success:function(response){
 			//	alert(JSON.stringify(response));
+			var data="";
 			$.each(response,function(index,report){
-				$("#viewAllReports").append("Score"+response[index][0]);
-				$("#viewAllReports").append("Result Status"+response[index][1]);
-				$("#viewAllReports").append("SubjectName "+response[index][2]+"<br>");
+				
+				
+				data+='<tr><td>'+response[index][2]+'</td><td>'+response[index][0]+'</td><td>'+response[index][1]+'</td></tr>';
+				
+				
 			})
+			$('#recordsTable').append(data);
 			}
-			
+		
 		})
+		
 		
 	})
 	
@@ -39,5 +64,12 @@ $(function(){
 <body>
 <div id="viewReports"></div>
 <div id="viewAllReports"></div>
+<table id="recordsTable" border='1'>
+    <tr>
+        <th>Subject Name</th>
+        <th>Score</th>
+        <th>Test Status</th>
+    </tr>
+</table>
 </body>
 </html>
