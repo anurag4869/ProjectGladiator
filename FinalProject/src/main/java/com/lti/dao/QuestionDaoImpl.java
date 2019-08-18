@@ -16,8 +16,7 @@ import com.lti.entity.TableQuestion;
 
 @Repository
 public class QuestionDaoImpl {
-	static int questionNumber =0;
-
+	
 	@PersistenceContext
 	protected EntityManager entityManager;
 	
@@ -45,7 +44,7 @@ public class QuestionDaoImpl {
 		List<Integer> listOfQuestionIds=query.getResultList();
 		Collections.shuffle(listOfQuestionIds);
 		
-		return listOfQuestionIds.subList(0, 7);
+		return listOfQuestionIds.subList(0, 5);
 	}
 
 	

@@ -17,12 +17,6 @@ public class DisplayQuestionForStudentController {
 	
 	@Autowired QuestionServiceImpl questionService;
 	
-	/*@PostMapping("/displayQuestions.lti")
-	public TableQuestion displayQusetions(@RequestBody TableSubject subject) {
-		TableQuestion question=questionService.getQuestionForStudent(subject.getSubjectId());
-		return question;
-	}*/
-	
 	@PostMapping("/displayQuestionIdsUsingDto.lti")
 	public List<Integer> displayQuestionsList(@RequestBody QuestionsDTO dto){
 		List<Integer> listOfQuestionIds=questionService.getQuestionForStudent(dto.getSubjectId());	

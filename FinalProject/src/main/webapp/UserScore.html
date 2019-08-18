@@ -29,17 +29,17 @@
 		$("#displayScore").append("User Result Id: "+userResult.userResultId+"<br>");
 		$("#displayScore").append("Test Status: "+userResult.resultStatus+"<br>");
 		$("#displayScore").append("Score: "+userResult.score+"<br>");
-		$("#displayScore").append("Level : "+userResult.questionLevel+"<br>");
+		
 		
 		
 		if(userResult.resultStatus=="FAIL"){
-			$("#displayStatus").append("Failed"+"<br>");
-			$("#btnClickStart").append('<a href="StudentLogin.html">Logout</button>'+"<br>");
+			$("#displayStatus").append("Sorry, you did not pass the Exam"+"<br>").css({"text-align":"center","font-weight":"bold","margin-top":"10px","font-size":"30px","color":"red"});
+			$("#displayLogout").append('<a href="StudentLogin.html">Logout</a>'+"<br>").css({"text-align":"center","font-weight":"bold","margin-top":"10px","font-size":"30px"});
 			
 			
 		}
 		else{
-			$("#displayStatus").append("Passed"+"<br>");
+			$("#displayStatus").append("Congratulation, you have cleared the exam"+"<br>").css({"text-align":"center","font-weight":"bold","margin-top":"10px","font-size":"30px"});
 			
 			
 		}
@@ -54,7 +54,7 @@
 <body bgcolor="white">
 <div id="heading">Test Results</div>
 <div id="displayScore"></div>
-<div id="btnClickStart"></div>
-<div id="btnClickNext"></div>
+<div id="displayLogout"></div>
+<div id="displayStatus"></div>
 </body>
 </html>

@@ -1,3 +1,4 @@
+
 $(function(){
 	var listOfQuestionIds;
 	var subjectId;
@@ -5,24 +6,31 @@ $(function(){
 	var countForQuestionList=0;
 	var count=1;
 	var selected;
-	var maxQuestions=8;
+	var maxQuestions=5;
 	$("#allSubjects").on("click",".approve-btn",function(evt){
 		evt.preventDefault();
-		// var btnText=$(this).text();
-		// alert(btnText);
+		
 		subjectId = $(this).attr("id");
-		//alert(subjectId);
-		// var sid = $("#1").val();
+		
 					
 		var subjectObj={
 				subjectId:subjectId
 		}
 		$("#allSubjects").hide();
+		$("#Instructions").append("Instructions To Take The Test:"+"<br>").css({"font-weight":"bold","margin":"20px 0px 100px 10px","font-size":"px"});
+		$("#Instructions").append("1. Make sure you have a good connection."+"<br>")
+		$("#Instructions").append(" 2.Never click the Back button on the browser. This will take you out of the test."+"<br>");
+		$("#Instructions").append("3. Do not resize the browser during the test."+"<br>")
+		$("#Instructions").append("<br>")
+		$("#Instructions").append("Passing Criteria:"+"<br>");
+		$("#Instructions").append("1. The Test comprises of 10 questions totally."+"<br>")
+		$("#Instructions").append(" 2. You have to score 60% to successfully clear the test."+"<br>");
+		$("#Instructions").append("3. That means you have to score 6 out of 10 to clear the test."+"<br>")
 		shuffleQuestionFunction();
 		addToTestTableFunction();
 		
-		// alert(subjectObj);
-	    var buttonStart=$('<input type="submit" id="btnChange" value="Start"></input>');
+		
+	    var buttonStart=$('<input type="submit" id="btnChange" value="Start"></input>').css({"color":"white","background-color":"#4CAF50","border":"none","color":"none","padding":"15px 32px","text-align":"center"," text-decoration":"none","margin":"4px 2px"});
 		buttonStart.appendTo("#btnClickStart");
 
     })
@@ -42,7 +50,7 @@ $(function(){
 			contentType:'application/json',
 			success:function(response){
 				listOfQuestionIds=response;			
-				alert(JSON.stringify(listOfQuestionIds));
+			
 			}
 		})
 		
@@ -58,9 +66,9 @@ $(function(){
 			 data:JSON.stringify(tableTestObj),
 			 contentType:'application/json',
 			 success:function(response){
-				 alert("done");
+				
 				 testId=JSON.stringify(response.testId);
-				 alert(testId);
+				
 			
 
 			 }
@@ -99,7 +107,7 @@ $(function(){
     
 	$('#examForm').on("click", 'input[type="radio"]', function(){
 		 selected=$(this).val();
-		 //alert(selected)
+		
 	 })
   
 	$("#btnClickStart").on("click","",function(evt){
@@ -108,7 +116,9 @@ $(function(){
 		countForQuestionList = 0;
 		loadQuestion(countForQuestionList);
 		$(this).hide();
-		 $("#btnClickNext").append('<input type="submit" value="Next" />')
+		$("#Instructions").hide();	
+		 $("#btnClickNext").append('<input type="submit" value="Next" id="btnNext"></input>');
+		 $("#btnNext").css({"color":"white","background-color":"#4CAF50","border":"none","color":"none","padding":"15px 32px","text-align":"center"," text-decoration":"none","margin":"4px 2px"})
 		 
 	})
 	
@@ -125,7 +135,7 @@ $(function(){
 		 if(countForQuestionList == (maxQuestions - 1))
 		 { 
 			 testDetailsObj.finish = true;
-			 alert("Submit Test");
+			
 			
 		 }
 		 
@@ -136,7 +146,7 @@ $(function(){
 			 contentType:'application/json',
 			 success:function(response){
 				 if($.trim(response) ){
-					 //alert(JSON.stringify(response));
+					
 					 sessionStorage.setItem("userResult",JSON.stringify(response));
 					 window.location.href="UserScore.html";
 				 }
@@ -148,8 +158,7 @@ $(function(){
 		 if(countForQuestionList == (maxQuestions - 1)) {
 			 $(this).text("Finish Exam");
 		 }
-		else if(countForQuestionList == maxQuestions)
-			alert("last question submitted");
+		
 		
 		loadQuestion(countForQuestionList); 
 		
@@ -160,3 +169,4 @@ $(function(){
 		
 	})
 	
+
