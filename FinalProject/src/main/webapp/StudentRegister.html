@@ -84,16 +84,7 @@
 
 
 
-         /*   $("#dob").blur(function () {
-                var dob=("#dob").val();
-                if (dob == "") {
-                    $("#dob").type("text").val("Please Enter Date")
-                        .css({ "color": "red", "text-align": "center", "font-weight": "bold", "border": "2px solid red", "box-shadow": "0 0 2px red" });
-                }
-            })*/
-
-
-
+       
 
 
             $("#addStudentForm").submit(function (evt) {
@@ -107,14 +98,6 @@
                 var dob=$("#dob").val();
                 var city=$("#citySelect").val();
 
-              /*  alert(dob);
-                alert(pwd);
-                alert(confirmPwd);
-                alert(name);
-                alert(email);
-                alert(mno);
-                alert(city);
-*/
                 var boolean = true;
                 //////////////////////////// Validation onSubmit///////////////////////       
                 if (pwd == "") {
@@ -154,7 +137,7 @@
                     alert("Mno "+boolean);
 
                 }
-               alert(boolean);
+             
 
                 //////////////////////////// Validation onSubmit///////////////////////  
 
@@ -179,8 +162,7 @@
                        data: JSON.stringify(obj),
                        contentType : 'application/json',
                        success : function(response){
-                      alert(JSON.stringify(response));
-                           // $(".result").html(response.message);
+                      			window.location.href="RegisterSuccess.html";
                        }
                   })
                 }
@@ -258,13 +240,13 @@
                 <label for="pwd">
                     <b>Password:</b>
                 </label>
-                <input type="text" placeholder="Password" name="pwd" id="pwd">
+                <input type="password" placeholder="Password" name="pwd" id="pwd">
                 </br>
 
                 <label for="confirmPwd">
                     <b>Confirm Password:</b>
                 </label>
-                <input type="text" placeholder="Confirm Password" name="confirmPwd" id="confirmPwd">
+                <input type="password" placeholder="Confirm Password" name="confirmPwd" id="confirmPwd">
                 </br>
 
                 <hr>

@@ -15,18 +15,15 @@ import com.lti.entity.TableQuestion;
 
 
 @Repository
-public class QuestionDaoImpl implements QuestionDao {
-	static int questionNumber =0;
 
+public class QuestionDaoImpl implements QuestionDao {
+	
 	@PersistenceContext
 	protected EntityManager entityManager;
 	
 	@Autowired
 	GenericDaoImpl dao;
 	
-	
-	
-
 	public void deleteQuestion(int questionId) {
 		
 		TableQuestion question=dao.fetchById(TableQuestion.class, questionId);
@@ -45,7 +42,7 @@ public class QuestionDaoImpl implements QuestionDao {
 		List<Integer> listOfQuestionIds=query.getResultList();
 		Collections.shuffle(listOfQuestionIds);
 		
-		return listOfQuestionIds.subList(0, 7);
+		return listOfQuestionIds.subList(0, 5);
 	}
 
 	

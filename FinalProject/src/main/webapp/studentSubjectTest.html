@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+#divQuestion{
+ font-size: 35px;
+    font-family: Calibri;
+    font-weight: bold;
+    padding-left:10px;
+     margin: 0 auto;
+    margin-top:0px;
+    width:50%;
+    height:75%;
+    margin-top:70px;
+}
+#Instructions{
+ font-size: 35px;
+}
+</style>
 <title>ALL SUBJECTS</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="displayQuestionForStudentModified.js"></script>
 <script>
 $(function(){
-	if(sessionStorage.sid==undefined)
-	 {
-		
-	 window.location.href = "StudentLogin.html";
-	 }
-
-$("#logout").click(function(evt){
- evt.preventDefault();
-sessionStorage.clear();
-
-window.location.href = "StudentLogin.html" 
-}) 
 	$.ajax({
 		url:'getAllSubjects.lti',
 		 method:'POST',
@@ -26,7 +30,7 @@ window.location.href = "StudentLogin.html"
 		success:function(response){
 	
 			$.each(response,function(index,subject){
-				var buttonSubject=$("<button>").attr("id",subject.subjectId).attr("class","approve-btn").text(subject.subjectName);
+				var buttonSubject=$("<button>").attr("id",subject.subjectId).attr("class","approve-btn").text(subject.subjectName).css({"color":"white","background-color":"#4CAF50","border":"none","color":"none","padding":"15px 32px","text-align":"center"," text-decoration":"none","margin":"4px 2px"});
 				$("#allSubjects").append(buttonSubject);
 				
 			})
@@ -44,6 +48,7 @@ window.location.href = "StudentLogin.html"
 <form id="examForm">
 <div id="allSubjects"></div>
 <div id="divQuestion"></div>
+<div id="Instructions"></div>
 <div id="btnClickStart"></div>
 <div id="btnClickNext"></div>
 <div id="btnSubmit"></div>

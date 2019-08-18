@@ -13,7 +13,10 @@ import com.lti.service.QuestionService;
 @RestController
 public class DisplayQuestionForStudentController {
 	
-	@Autowired QuestionService questionService;
+
+	@Autowired
+	QuestionService questionService;
+
 	
 	@PostMapping("/displayQuestionIdsUsingDto.lti")
 	public List<Integer> displayQuestionsList(@RequestBody QuestionsDTO dto){
