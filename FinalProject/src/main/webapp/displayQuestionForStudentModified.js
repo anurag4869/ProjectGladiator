@@ -103,6 +103,7 @@ $(function(){
   
 	$("#btnClickStart").on("click","",function(evt){
 		evt.preventDefault();
+		
 		countForQuestionList = 0;
 		loadQuestion(countForQuestionList);
 		$(this).hide();

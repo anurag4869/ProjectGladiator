@@ -25,8 +25,8 @@ public class TableUserResult {
 	@Column(name="SCORE")
 	private int score;
 	
-	@Column(name="QUESTION_LEVEL")
-	private int questionLevel;
+	@Column(name="LEVEL_PASSED")
+	private int levelPassed;
 	
 	@JsonIgnore
 	@OneToOne
@@ -57,12 +57,14 @@ public class TableUserResult {
 		this.score = score;
 	}
 
-	public int getQuestionLevel() {
-		return questionLevel;
+	
+
+	public int getLevelPassed() {
+		return levelPassed;
 	}
 
-	public void setQuestionLevel(int questionLevel) {
-		this.questionLevel = questionLevel;
+	public void setLevelPassed(int levelPassed) {
+		this.levelPassed = levelPassed;
 	}
 
 	public TableTest getTestUserResult() {
