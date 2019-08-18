@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+$(function(){
+	var studentId=1;
+	$("#viewReports").append("<button type='submit' id='btnViewReports'>View Reports</button>");
+	$("#viewReports").on("click","",function(evt){
+		evt.preventDefault();
+		$("#btnViewReports").hide();
+		$.ajax({
+			url:'viewReports.lti?studentId='+studentId,
+			method:'GET',
+			contentType : 'application/json',
+			success:function(response){
+			//	alert(JSON.stringify(response));
+			$.each(response,function(index,report){
+				$("#viewAllReports").append("Score"+response[index][0]);
+				$("#viewAllReports").append("Result Status"+response[index][1]);
+				$("#viewAllReports").append("SubjectName "+response[index][2]+"<br>");
+			})
+			}
+			
+		})
+		
+	})
+	
+	
+})
+
+</script>
+
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="viewReports"></div>
+<div id="viewAllReports"></div>
+</body>
+</html>

@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.dto.AddUserResponsesDTO;
+import com.lti.entity.TableUserResult;
+import com.lti.service.ScoreCalculatorServiceImpl;
 import com.lti.service.TestDetailsService;
 
 @RestController
@@ -13,13 +15,22 @@ public class TestDetailsController {
 	@Autowired
 	TestDetailsService testDetailsService;
 	
+	@Autowired
+	ScoreCalculatorServiceImpl scoreCalculateService;
+	
 	@PostMapping("/addDataToTestDetailsTable.lti")
-	public void addToTableTestDetails(@RequestBody AddUserResponsesDTO testDetailsData) {
-		testDetailsService.addToTableDetailsService(testDetailsData.getTestId(),
-				testDetailsData.getQuestionId(),testDetailsData.getUserResponse());
-		/*if(testDetailsData.isFinish()) {
+	public TableUserResult addToTableTestDetails(@RequestBody AddUserResponsesDTO testDetailsData) {
+		if(!testDetailsData.isFinish()) {
+			testDetailsService.addToTableDetailsService(testDetailsData.getTestId(),
+					testDetailsData.getQuestionId(),testDetailsData.getUserResponse());
+			return null;
+		}
+		else if(testDetailsData.isFinish()) {
+			System.out.println("Test Finished");
+			return scoreCalculateService.calculateScore(testDetailsData.getTestId());
 			
-		}*/
+		}
+		return null;
 	}
 
 }
