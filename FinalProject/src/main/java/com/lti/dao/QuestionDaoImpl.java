@@ -52,8 +52,19 @@ public class QuestionDaoImpl {
 		Collections.shuffle(listOfQuestionIds);
 		
 		return listOfQuestionIds.subList(0, 8);
-		
 	}
+	public List<TableQuestion> fetchAll(int subjectId) {
+		 String query="select question from TableQuestion question where question.questionStatus=:status and question.subject.subjectId=:subjectId";
+		 Query q=entityManager.createQuery(query);
+		 q.setParameter("subjectId", subjectId);
+		 q.setParameter("status", 1);
+		 List<TableQuestion> list=q.getResultList();
+		 System.out.println("dao");
+		 for(TableQuestion q1: list)
+		  System.out.println(q1.getQuestion());
+		 return list;
+		}
+
 
 
 }

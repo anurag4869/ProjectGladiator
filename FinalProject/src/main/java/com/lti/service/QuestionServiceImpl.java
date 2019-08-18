@@ -41,8 +41,8 @@ public class QuestionServiceImpl {
 		dao.save(question);
 		}
 	
-	public List<TableQuestion> getAllQuestions(){
-		List<TableQuestion>list=dao.fetchAll(TableQuestion.class);
+	public List<TableQuestion> getAllQuestions(int subjectId){
+		List<TableQuestion>list=questionDao.fetchAll(subjectId);
 		return list;
 	}
 	

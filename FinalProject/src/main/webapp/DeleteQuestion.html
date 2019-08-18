@@ -10,8 +10,8 @@
 		 evt.preventDefault();*/
 		 
 		 $.ajax({
-			 url:'getAllQuestions.lti',
-			 method:'POST',
+			 url:'getAllQuestions.lti?subjectId='+subjectId,
+			 method:'GET',
 			 dataType:'JSON',
 			contentType:'application/json',
 			success:function(response){
