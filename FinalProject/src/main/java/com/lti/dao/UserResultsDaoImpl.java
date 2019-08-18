@@ -23,11 +23,11 @@ public class UserResultsDaoImpl {
 		
 		if(count.intValue()>=6) {
 			userResults.setResultStatus("PASS");
-			userResults.setLevelPassed(1);;
+			userResults.setLevelPassed(1);
 		}
 		else {
 			userResults.setResultStatus("FAIL");
-			userResults.setLevelPassed(1);;
+			userResults.setLevelPassed(1);
 			}
 		TableUserResult result=(TableUserResult)dao.save(userResults);
 		System.out.println("UserResultId "+result.getUserResultId());
