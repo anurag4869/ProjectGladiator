@@ -54,7 +54,7 @@ public class QuestionController {
 	}
 	
 	@GetMapping("/deleteQuestion.lti")
-	public String assignProjectToEmployee(@RequestParam ("questionId") int questionId) {
+	public String assignQuestionToSubject(@RequestParam ("questionId") int questionId) {
 		questionService.deleteQuestion(questionId);
 	Status status=new Status();
 	status.setMessage("Question deleted");
