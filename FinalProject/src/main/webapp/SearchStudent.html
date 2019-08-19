@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+select{
+	width: 50%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+	 background-color: #ddd;
+  outline: none;
+}
+</style>
 <meta charset="ISO-8859-1">
 <title>Search Student</title>
 <link rel="stylesheeet" href="Home.css" >
@@ -73,37 +84,44 @@ $(function(){
   
 </ul>
 <form id="search">
-<select id= "subject">
+Technology:<select id= "subject">
   <option value="Java">Java</option>
   <option value="C#">C#</option>
   <option value="PHP">PHP</option>
 </select>
-
-<select id="state">
+<br>
+State:<select id="state">
   <option value="MAHARASHTRA">MAHARASHTRA</option>
   <option value="RAJASTHAN">Rajasthan</option>
   <option value="Goa">Goa</option>
   <option value="Gujrat">Gujrat</option>
 </select>
-
-<select id = "city">
+<br>
+City:<select id = "city">
   <option value="Mumbai">Mumbai</option>
   <option value="THANE">THANE</option>
   <option value="JAIPUR">JAIPUR</option>
   <option value="NAGPUR">Nagpur</option>
 </select>
-	
-<select id = "level">
+	<br>
+Level:<select id = "level">
   <option value="1">1</option>
   <option value="2">2</option>
   <option value="3">3</option>
 </select>	
+<br> Score:<select id="score">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
 
-<select id = "score">
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-</select>	
+		</select> <br>	
   <button type="submit" class="searchbtn">Search</button>
 
   
