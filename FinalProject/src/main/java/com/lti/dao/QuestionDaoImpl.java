@@ -42,7 +42,7 @@ public class QuestionDaoImpl implements QuestionDao {
 		List<Integer> listOfQuestionIds=query.getResultList();
 		Collections.shuffle(listOfQuestionIds);
 		
-		return listOfQuestionIds.subList(0, 5);
+		return listOfQuestionIds.subList(0, 10);
 	}
 
 	

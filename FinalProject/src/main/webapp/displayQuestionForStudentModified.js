@@ -6,7 +6,7 @@ $(function(){
 	var countForQuestionList=0;
 	var count=1;
 	var selected;
-	var maxQuestions=5;
+	var maxQuestions=11;
 	$("#allSubjects").on("click",".approve-btn",function(evt){
 		evt.preventDefault();
 		
