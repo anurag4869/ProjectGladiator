@@ -14,21 +14,20 @@
 				  var  studentEmail =$("#email").val();
 				   var studentPwd =$("#pwd").val();
 	
-		   alert(studentEmail);
-		   alert(studentPwd);
+		  
 		   
 		   $.ajax({
 				url:'validateAdminCredentials.lti?email='+studentEmail+'&pwd='+studentPwd,
 				method:'GET',
 				contentType : 'application/json',
 				success : function(response){
-			   alert(JSON.stringify(response));
+			   
 					if(response===undefined)
 						{
 						 if(typeof (Storage)!=="undefined"){
 							 
 				                sessionStorage.id = subjectObj.subjectId;
-				                  alert(sessionStorage.id);
+				                  
 				       window.location.href= 'AdminLogin.html';
 				                 }
 							

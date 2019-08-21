@@ -40,7 +40,7 @@ public class StudentServiceImpl implements StudentService{
 			status.setGeneratedId(student.getStudentId());
 			status.setMessage("Valid");
 			status.setName(student.getStudentName());
-		
+			status.setEmail(student.getStudentEmail());
 		}
 			
 		return status;

@@ -37,11 +37,7 @@ public class QuestionController {
 	}
 	@PostMapping("/addQuestionForSubject.lti")
 	public void addQuestionForSubject(@RequestBody TableSubject subject) {
-	/*	TableSubject subject=dao.fetchById(TableSubject.class, subjectId);
-		TableQuestion question=dao.fetchById(TableQuestion.class, questionId);
-		
-		question.setSubject(subject);
-		dao.save(question);*/
+
 		 subjectId=subject.getSubjectId();
 		System.out.println("SubjectId "+subjectId);
 		questionService.addQuestionForSubject(questionId,subjectId);

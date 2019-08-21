@@ -20,8 +20,8 @@
 
             $("#pwd").blur(function () {
                 var pwd = $("#pwd").val();
-                var pwdRegex = "";
-                if (pwd == "") {
+                var regPwd = /(?=^.{8,16}$)(?=(?:.*?\d){1})(?=.*[a-z])(?=(?:.*?[!@#$%*()_+^&}{:;?.]){1})(?!.*\s)[0-9a-zA-Z!@#$%*()_+^&]*$/;
+                if (pwd == "" || !regPwd.test(pwd)) {
                     $("#pwd").val("Invalid Password")
                         .css({ "color": "red", "text-align": "center", "font-weight": "bold", "border": "2px solid red", "box-shadow": "0 0 2px red" });
                 }
@@ -97,21 +97,22 @@
                 var mno = $("#mno").val();
                 var dob=$("#dob").val();
                 var city=$("#citySelect").val();
-
+                var regPwd = /(?=^.{8,16}$)(?=(?:.*?\d){1})(?=.*[a-z])(?=(?:.*?[!@#$%*()_+^&}{:;?.]){1})(?!.*\s)[0-9a-zA-Z!@#$%*()_+^&]*$/;
                 var boolean = true;
                 //////////////////////////// Validation onSubmit///////////////////////       
-                if (pwd == "") {
+                if (pwd == "" || !regPwd.test(pwd)) {
+                	
                     $("#pwd").val("Invalid Password")
                         .css({ "color": "red", "text-align": "center", "font-weight": "bold", "border": "2px solid red", "box-shadow": "0 0 2px red" });
                     boolean = false;
-                    alert("Pwd "+boolean);
+                    
                 }
 
                 if (confirmPwd =="" && confirmPwd == pwd) {
                     $("#pwd").val("Invalid Password")
                         .css({ "color": "red", "text-align": "center", "font-weight": "bold", "border": "2px solid red", "box-shadow": "0 0 2px red" });
                     boolean = false;
-                    alert("ConfirmPwd "+boolean);
+                 
                 }
 
                 var nameRegex = /^[a-zA-Z ]+$/
@@ -119,7 +120,7 @@
                     $("#name").val("Please Enter Valid Name")
                         .css({ "color": "red", "text-align": "center", "font-weight": "bold", "border": "2px solid red", "box-shadow": "0 0 2px red" });
                     boolean = false;
-                    alert("Name "+boolean);
+                   
                 }
 
                 var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
@@ -127,14 +128,14 @@
                     $("#email").val("Please Enter Valid Email")
                         .css({ "color": "red", "text-align": "center", "font-weight": "bold", "border": "2px solid red", "box-shadow": "0 0 2px red" });
                     boolean = false;
-                    alert("Email "+boolean);
+                   
                 }
                 var mnoRegex = /^[0-9]{10}$/;
                 if (mno = "" || !mnoRegex.test(mno)) {
                     $("#mno").val("Please Enter Valid Mobile Number")
                         .css({ "color": "red", "text-align": "center", "font-weight": "bold", "border": "2px solid red", "box-shadow": "0 0 2px red" });
                     boolean = false;
-                    alert("Mno "+boolean);
+                   
 
                 }
              

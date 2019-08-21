@@ -31,8 +31,7 @@ public class QuestionServiceImpl implements QuestionService {
 	
 	@Transactional
 	public void addQuestionForSubject( int questionId,int subjectId) {
-		/*TableQuestion updatedQuestion=(TableQuestion) dao.save(question);
-		return updatedQuestion.getQuestionId();*/
+		
 		TableSubject subject=dao.fetchById(TableSubject.class, subjectId);
 		TableQuestion question=dao.fetchById(TableQuestion.class, questionId);
 		

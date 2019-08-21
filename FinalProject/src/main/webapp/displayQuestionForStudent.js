@@ -6,8 +6,7 @@ $(function(){
 		var counter=0;
 		$("#allSubjects").on("click",".approve-btn",function(evt){
 			evt.preventDefault();
-			// var btnText=$(this).text();
-			// alert(btnText);
+			
 			subjectId = $(this).attr("id");
 			alert(subjectId);
 			// var sid = $("#1").val();

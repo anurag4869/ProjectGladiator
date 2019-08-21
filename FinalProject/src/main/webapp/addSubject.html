@@ -8,9 +8,9 @@
 	$(function(){
 		$("#frmSubject").submit(function(evt){
 			evt.preventDefault();
-			//var subjectName=$("#subjectName").val();
+			
 			var obj={subjectName:$("#subjectName").val()}
-			//alert(subjectName);
+			
 			
 			$.ajax({
 				url:'addSubject.lti',
@@ -18,7 +18,7 @@
 				data:JSON.stringify(obj),
 				contentType : 'application/json',
 				success:function(response){
-					alert(JSON.stringify(response));
+					
 				}
 			})
 			

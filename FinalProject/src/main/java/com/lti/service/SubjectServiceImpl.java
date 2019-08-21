@@ -20,7 +20,6 @@ public class SubjectServiceImpl implements SubjectService {
 	@Transactional
 	public void addSubject(TableSubject subject) {
 		subject.setSubjectName("PHP");
-		//System.out.println("Service");
 		dao.save(subject);
 }
 	

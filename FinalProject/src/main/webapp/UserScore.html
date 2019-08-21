@@ -25,6 +25,7 @@
 <script>
 
 	$(function() {
+		
 		var userResult=JSON.parse(sessionStorage.userResult);
 		$("#displayScore").append("User Result Id: "+userResult.userResultId+"<br>");
 		$("#displayScore").append("Test Status: "+userResult.resultStatus+"<br>");
@@ -34,7 +35,6 @@
 		
 		if(userResult.resultStatus=="FAIL"){
 			$("#displayStatus").append("Sorry, you did not pass the Exam"+"<br>").css({"text-align":"center","font-weight":"bold","margin-top":"10px","font-size":"30px","color":"red"});
-			$("#displayLogout").append('<a href="StudentLogin.html">Logout</a>'+"<br>").css({"text-align":"center","font-weight":"bold","margin-top":"10px","font-size":"30px"});
 			
 			
 		}
@@ -43,8 +43,16 @@
 			
 			
 		}
-	
-	
+		$("#displayLogout").append('<a href="StudentLogin.html">Logout</a>'+"<br>").css({"text-align":"center","font-weight":"bold","margin-top":"10px","font-size":"30px"});
+
+		   $.ajax({
+               url:'sendEmail.lti?email='+sessionStorage.email+'&content='+userResult.score,
+               method:'GET',
+               contentType : 'application/json',
+               success : function(response){
+              		
+               }
+          })
 
 	})
 </script>

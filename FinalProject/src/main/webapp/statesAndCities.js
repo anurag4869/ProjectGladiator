@@ -2,7 +2,7 @@
 var citiesByState = {
 Odisha: ["Bhubaneswar","Puri","Cuttack"],
 Maharashtra: ["Mumbai","Pune","Nagpur"],
-Kerala: ["kochi","Kanpur"]
+Kerala: ["kochi","Ponnani"]
 }
 function makeSubmenu(value) {
 if(value.length==0) document.getElementById("citySelect").innerHTML = "<option></option>";
