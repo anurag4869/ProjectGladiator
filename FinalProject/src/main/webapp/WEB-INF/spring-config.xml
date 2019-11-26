@@ -69,7 +69,7 @@
     </bean>
 
     <bean id="preConfiguredMessage" class="org.springframework.mail.SimpleMailMessage">
-        <property name="from" value="dhawadanurag@outlook.com"></property>
+        <property name="from" value="your_email_id"></property>
     </bean>
 <!-- This bean will manage the transaction for us,
 so no need to manually write the code to begin/commit/rollback
