@@ -54,7 +54,7 @@
         <property name="host" value="smtp.office365.com"/>
         <property name="port" value="587" />
         <property name="username" value="dhawadanurag@outlook.com"/>
-        <property name="password" value="anurag8997"/>
+        <property name="password" value="your_password"/>
         <property name="javaMailProperties">
             <props>
                 <prop key="mail.transport.protocol">smtp</prop>
