@@ -53,7 +53,7 @@
 <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
         <property name="host" value="smtp.office365.com"/>
         <property name="port" value="587" />
-        <property name="username" value="dhawadanurag@outlook.com"/>
+        <property name="username" value="your_email_id"/>
         <property name="password" value="your_password"/>
         <property name="javaMailProperties">
             <props>
